@@ -7,7 +7,7 @@ import WALogo from "../../assets/svg/wa.svg";
 export default function Footer() {
   return (
     <>
-      <footer className="p-8">
+      <footer className="p-8 mt-16">
         <div className="py-8">
           <TypographyH1 content="Contact" />
         </div>
