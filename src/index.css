@@ -66,4 +66,10 @@
     @apply bg-background text-foreground;
     font-family: "Montserrat", system-ui, sans-serif;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
