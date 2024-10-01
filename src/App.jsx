@@ -9,17 +9,21 @@ import Footer from "./components/footer";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/all-products" element={<AllProducts />} />
-        <Route path="/all-sales" element={<AllSales />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-      <Footer />
-    </>
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-1">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/all-products" element={<AllProducts />} />
+          <Route path="/all-sales" element={<AllSales />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </div>
   );
 }
 
