@@ -1,6 +1,6 @@
-import { TypographyH1 } from "../ui/typographyH1";
-import { TypographyH2 } from "../ui/typographyH2";
-import { TypographyH4Muted } from "../ui/typographyH4Muted";
+import { TypographyH1 } from "../ui/typo/typographyH1";
+import { TypographyH2 } from "../ui/typo/typographyH2";
+import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import InstLogo from "../../assets/svg/inst.svg";
 import WALogo from "../../assets/svg/wa.svg";
 

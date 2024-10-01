@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { TypographyH4 } from "../ui/typographyH4";
+import { TypographyH4 } from "../ui/typo/typographyH4";
 import MainLogo from "../../assets/svg/logo.svg";
 import Cart from "../../assets/svg/cart.svg";
 
