@@ -1,3 +1,3 @@
-export function TypographyH4({ content }) {
-  return <h4 className="scroll-m-20 text-xl font-medium">{content}</h4>;
+export function TypographyH4({ children }) {
+  return <h4 className="text-xl font-medium scroll-m-20">{children}</h4>;
 }

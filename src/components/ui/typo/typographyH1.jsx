@@ -1,5 +1,5 @@
-export function TypographyH1({ content }) {
+export function TypographyH1({ children }) {
   return (
-    <h4 className="text-accent scroll-m-20 text-6xl font-bold">{content}</h4>
+    <h4 className="text-6xl font-bold text-accent scroll-m-20">{children}</h4>
   );
 }

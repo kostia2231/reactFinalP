@@ -1,5 +1,6 @@
 // ----- to make an alert.
 // ----- fix validation.
+// ----- pupUp animation.
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,14 +18,14 @@ export default function DiscountForm() {
 
   useEffect(() => {
     if (showPopup) {
-      const handleScroll = () => {
+      const handleClose = () => {
         closePopup();
       };
 
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleClose);
 
       return () => {
-        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("scroll", handleClose);
       };
     }
   }, [showPopup]);
@@ -47,33 +48,33 @@ export default function DiscountForm() {
   });
 
   return (
-    <div className="bg-primary m-8 rounded-md grid">
+    <div className="grid m-8 rounded-md bg-primary">
       {/* ///// */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="flex gap-4 bg-primary p-8 rounded-lg shadow-lg relative">
+          <div className="relative flex gap-4 p-8 rounded-lg shadow-lg bg-primary">
             <div className="mr-8">
-              <h2 className="text-4xl text-white font-semibold mb-4">Sent!</h2>
-              <p className="text-white text-xl">
-                Congratulations,
+              <h2 className="mb-4 text-4xl font-semibold text-white">Sent!</h2>
+              <p className="text-xl text-white">
+                Congratulations!
                 <br />
-                check your email for a coupon.
+                Check your email for a coupon.
               </p>
             </div>
             <Button variant="secondary" size="icon" onClick={closePopup}>
-              <X className="h-6 w-6" />
+              <X className="w-6 h-6" />
             </Button>
           </div>
         </div>
       )}
       {/* ///// */}
 
-      <h1 className="text-white text-6xl font-bold mx-auto pt-8">
+      <h1 className="pt-8 mx-auto text-6xl font-bold text-white">
         5% off on the first order
       </h1>
-      <div className="flex flex-wrap mx-auto gap-6">
+      <div className="flex flex-wrap gap-6 mx-auto">
         {["name", "phone", "email"].map((field) => (
-          <p key={field} className="text-red-400 text-xl flex justify-center">
+          <p key={field} className="flex justify-center text-xl text-red-400">
             {formik.errors[field] &&
               formik.touched[field] &&
               formik.errors[field]}
@@ -84,7 +85,7 @@ export default function DiscountForm() {
         <img
           src={DiscountImg}
           alt="Discount Image"
-          className="w-full h-auto mt-auto  "
+          className="w-full h-auto mt-auto "
         />
         <form
           onSubmit={formik.handleSubmit}
@@ -108,11 +109,7 @@ export default function DiscountForm() {
               onBlur={formik.handleBlur}
             />
           ))}
-          <Button
-            type="submit"
-            variant="secondary"
-            className="mt-4 w-full h-fit"
-          >
+          <Button type="submit" variant="secondary" className="w-full mt-4">
             Get discount
           </Button>
         </form>

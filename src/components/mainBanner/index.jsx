@@ -14,12 +14,12 @@ export default function MainBanner() {
           className="w-full h-auto"
         />
         <div className="absolute inset-0 flex flex-col justify-start">
-          <h1 className="text-white text-8xl leading-snug font-bold pl-8 pt-16">
+          <h1 className="pt-16 pl-8 font-bold leading-snug text-white text-8xl">
             Amazing Discounts <br />
             on Pets Products!
           </h1>
           <Link to="/all-sales">
-            <Button className="ml-8 mt-8 w-fit h-auto">Check Out</Button>
+            <Button>Check Out</Button>
           </Link>
         </div>
       </div>

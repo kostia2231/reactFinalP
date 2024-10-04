@@ -11,7 +11,7 @@ export default function Categories() {
           Main Page
         </Badge>
       </Link>
-      <div className="my-auto w-4">
+      <div className="w-4 my-auto">
         <hr className="min-w-full" />
       </div>
       <Badge className="h-fit text-accent" variant="outline">

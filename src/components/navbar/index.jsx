@@ -18,7 +18,7 @@ export default function Navbar() {
             color: isActive ? "#0D50FF" : "#282828",
           })}
         >
-          <TypographyH4 content="Main Page" />
+          <TypographyH4>Main Page</TypographyH4>
         </NavLink>
         <NavLink
           to="/categories"
@@ -26,7 +26,7 @@ export default function Navbar() {
             color: isActive ? "#0D50FF" : "#282828",
           })}
         >
-          <TypographyH4 content="Categories" />
+          <TypographyH4>Categories</TypographyH4>
         </NavLink>
         <NavLink
           to="/all-products"
@@ -34,7 +34,7 @@ export default function Navbar() {
             color: isActive ? "#0D50FF" : "#282828",
           })}
         >
-          <TypographyH4 content="All Products" />
+          <TypographyH4>All Products</TypographyH4>
         </NavLink>
         <NavLink
           to="/all-sales"
@@ -42,7 +42,7 @@ export default function Navbar() {
             color: isActive ? "#0D50FF" : "#282828",
           })}
         >
-          <TypographyH4 content="All Sales" />
+          <TypographyH4>All Sales</TypographyH4>
         </NavLink>
       </nav>
       <div>

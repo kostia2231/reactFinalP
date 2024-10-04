@@ -5,8 +5,8 @@ import { Badge } from "@/components/ui/badge";
 export default function MainCategories() {
   return (
     <div className="p-8 mt-16">
-      <div className="flex justify-between items-center">
-        <TypographyH1 content="Categories" />
+      <div className="flex items-center justify-between">
+        <TypographyH1>Categories</TypographyH1>
         <div className="flex-grow ml-8">
           <hr className="min-w-full" />
         </div>
