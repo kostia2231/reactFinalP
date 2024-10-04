@@ -31,7 +31,11 @@ export default function Breadcrumbs() {
       );
     });
 
-  if (location.pathname === "/" || location.pathname === "") {
+  if (
+    location.pathname === "/" ||
+    location.pathname === "" ||
+    location.pathname === "/404"
+  ) {
     return null;
   }
 

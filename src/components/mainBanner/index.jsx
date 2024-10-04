@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function MainBanner() {
   return (
-    <div className="flex items-center justify-center w">
+    <div className="flex items-center justify-center">
       <div className="relative w-full">
         <div className="bg-accent"></div>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>

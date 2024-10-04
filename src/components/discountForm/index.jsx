@@ -75,7 +75,7 @@ export default function DiscountForm() {
         />
         <form
           onSubmit={formik.handleSubmit}
-          className="flex flex-col gap-4 p-8"
+          className="flex flex-col gap-4 p-8 mt-auto"
         >
           {["name", "phone", "email"].map((field, index) => (
             <Input

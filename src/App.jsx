@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Main from "./pages/main";
 import Categories from "./pages/categories";
 import AllProducts from "./pages/allProducts";
@@ -7,6 +7,7 @@ import Cart from "./pages/cart";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Breadcrumbs from "@/components/breadcrumbs";
+import NotFound from "./pages/notFound";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
         <Navbar />
         <Breadcrumbs />
         <Routes>
+          <Route path="*" element={<Navigate to="/404" replace />} />
+          <Route path="/404" element={<NotFound />} />
+
           <Route path="/" element={<Main />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/all-products" element={<AllProducts />} />
