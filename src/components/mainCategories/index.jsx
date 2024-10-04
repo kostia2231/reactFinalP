@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { TypographyH1 } from "../ui/typo/typographyH1";
 import { Badge } from "@/components/ui/badge";
-
+import ListCategories from "../listCategories";
 export default function MainCategories() {
   return (
     <div className="p-8 mt-16">
@@ -16,7 +16,7 @@ export default function MainCategories() {
           </Badge>
         </Link>
       </div>
-      {/* GALLERY TO DO */}
+      <ListCategories limit={4} />
     </div>
   );
 }

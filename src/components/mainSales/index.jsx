@@ -1,6 +1,7 @@
 import { TypographyH1 } from "../ui/typo/typographyH1";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import ListSales from "../listSales";
 
 export default function SaleComponent() {
   return (
@@ -16,7 +17,7 @@ export default function SaleComponent() {
           </Badge>
         </Link>
       </div>
-      {/* GALLERY TO DO */}
+      <ListSales limit={8} />
     </div>
   );
 }
