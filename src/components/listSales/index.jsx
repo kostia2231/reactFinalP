@@ -1,8 +1,8 @@
 import { useData } from "@/dataFetch/data";
-import ListSalesItem from "../listSalesItem";
+import ListProductsItem from "../listProductsItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 
-export default function ListCategories({ limit }) {
+export default function ListProducts({ limit }) {
   const { data, status, error } = useData();
 
   if (status === "loading")
@@ -15,7 +15,7 @@ export default function ListCategories({ limit }) {
     <>
       <div className="grid grid-cols-4 gap-6 my-10">
         {limitedData?.map((item) => (
-          <ListSalesItem key={item.id} item={item} />
+          <ListProductsItem key={item.id} item={item} />
         ))}
       </div>
     </>

@@ -1,7 +1,7 @@
 import { TypographyH1 } from "../ui/typo/typographyH1";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import ListSales from "../listSales";
+import ListProducts from "../listProducts";
 
 export default function SaleComponent() {
   return (
@@ -17,7 +17,7 @@ export default function SaleComponent() {
           </Badge>
         </Link>
       </div>
-      <ListSales limit={8} />
+      <ListProducts limit={4} showAll={false} />
     </div>
   );
 }

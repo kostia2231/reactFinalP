@@ -39,7 +39,7 @@ export default function Footer() {
             <div className="mb-4">
               <TypographyH4Muted>Working Hours</TypographyH4Muted>
             </div>
-            <TypographyH2>4 hours a day</TypographyH2>
+            <TypographyH2>24 hours a day</TypographyH2>
           </div>
         </div>
       </footer>
