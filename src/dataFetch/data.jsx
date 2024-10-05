@@ -33,9 +33,12 @@ export default function DataProvider({ children }) {
   }
 
   return (
-    <DataContext.Provider value={{ data, status, error }}>
-      {children}
-    </DataContext.Provider>
+    { data },
+    (
+      <DataContext.Provider value={{ data, status, error }}>
+        {children}
+      </DataContext.Provider>
+    )
   );
 }
 
