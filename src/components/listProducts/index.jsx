@@ -1,9 +1,9 @@
-import { useData } from "@/dataFetch/data";
+import { DataProvider } from "@/dataFetch/data";
 import ListProductsItem from "../listProductsItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 
 export default function ListProducts({ limit, showAll }) {
-  const { data, status, error } = useData();
+  const { data, status, error } = DataProvider();
 
   if (status === "loading")
     return <TypographyH4Muted>Loading...</TypographyH4Muted>;
