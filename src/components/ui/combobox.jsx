@@ -1,12 +1,9 @@
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -19,24 +16,20 @@ import { useState } from "react";
 
 const frameworks = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "default",
+    label: "default",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "newest",
+    label: "newest",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "high-low",
+    label: "price: high-low",
   },
   {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
+    value: "low-high",
+    label: "price: low-high",
   },
 ];
 
@@ -47,8 +40,9 @@ export default function Combobox() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Badge
+        <Button
           variant="link"
+          size="sm"
           role="combobox"
           aria-expanded={open}
           className="w-[200px] justify-between"
@@ -57,13 +51,11 @@ export default function Combobox() {
             ? frameworks.find((framework) => framework.value === value)?.label
             : "by"}
           <ChevronsUpDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
-        </Badge>
+        </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent tent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
               {frameworks.map((framework) => (
                 <CommandItem
