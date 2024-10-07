@@ -11,17 +11,21 @@ export default function Breadcrumbs() {
     .map((crumb, index, array) => {
       currentLink = `/${crumb}`;
 
-      const formattedCrumb = crumb
+      const formattedCrumb = decodeURIComponent(crumb)
         .replace(/-/g, " ")
         .split(" ")
         .map((word) => word.charAt(0).toLocaleUpperCase() + word.slice(1))
         .join(" ");
 
       return (
-        <div className="flex items-center" key={crumb}>
-          <Badge variant="outline">
-            <Link to={currentLink}>{formattedCrumb}</Link>
-          </Badge>
+        <div className="flex items-center" key={currentLink}>
+          {index < array.length - 1 ? (
+            <Badge variant="outline">
+              <Link to={currentLink}>{formattedCrumb}</Link>
+            </Badge>
+          ) : (
+            <Badge variant="primary">{formattedCrumb}</Badge>
+          )}
           {index < array.length - 1 && (
             <div className="w-4 my-auto">
               <hr className="min-w-full" />

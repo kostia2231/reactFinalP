@@ -3,13 +3,14 @@ import ListCategoriesItem from "../listCategoriesItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 
 export default function ListCategories({ limit }) {
-  const { data, status, error } = DataProvider();
+  const { data, isLoading, isError, error } = DataProvider();
 
-  if (status === "loading")
-    return <TypographyH4Muted>Loading...</TypographyH4Muted>;
-  if (status === "error") return console.log("Error: ", error.message);
+  if (isLoading) return <TypographyH4Muted>Loading...</TypographyH4Muted>;
+  if (isError || error) return console.log("Error ", error.message);
 
   const limitedData = data?.categories?.slice(0, limit);
+
+  console.log("Fetching Categories");
 
   return (
     <>

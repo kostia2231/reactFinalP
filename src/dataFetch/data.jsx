@@ -8,6 +8,7 @@ export function DataProvider() {
         axios.get("http://localhost:3333/categories/all"),
         axios.get("http://localhost:3333/products/all"),
       ]);
+
       return {
         categories: categoriesResponse.data,
         products: productsResponse.data,

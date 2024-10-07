@@ -8,7 +8,10 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import NotFound from "./pages/notFound";
+import ProductPage from "./pages/productPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -21,10 +24,13 @@ function App() {
           <Routes>
             <Route path="*" element={<Navigate to="/404" replace />} />
             <Route path="/404" element={<NotFound />} />
-
             <Route path="/" element={<Main />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/all-products" element={<AllProducts />} />
+            <Route
+              path="/all-products/:productTitle"
+              element={<ProductPage />}
+            />
             <Route path="/all-sales" element={<AllSales />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
@@ -33,6 +39,7 @@ function App() {
           <Footer />
         </div>
       </div>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
