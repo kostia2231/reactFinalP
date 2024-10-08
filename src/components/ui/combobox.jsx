@@ -24,18 +24,25 @@ const frameworks = [
     label: "newest",
   },
   {
-    value: "high-low",
+    value: "price:high-low",
     label: "price: high-low",
   },
   {
-    value: "low-high",
+    value: "price:low-high",
     label: "price: low-high",
   },
 ];
 
-export default function Combobox() {
+export default function Combobox({ onChange }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+
+  const handleSelect = (currentValue) => {
+    const newValue = currentValue === value ? "" : currentValue;
+    setValue(newValue);
+    setOpen(false);
+    onChange(newValue);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -53,7 +60,7 @@ export default function Combobox() {
           <ChevronsUpDown className="w-4 h-4 ml-2 opacity-50 shrink-0" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent tent className="w-[200px] p-0">
+      <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandList>
             <CommandGroup>
@@ -61,10 +68,7 @@ export default function Combobox() {
                 <CommandItem
                   key={framework.value}
                   value={framework.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    setOpen(false);
-                  }}
+                  onSelect={() => handleSelect(framework.value)}
                 >
                   <Check
                     className={cn(

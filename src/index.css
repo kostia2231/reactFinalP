@@ -67,7 +67,11 @@
     font-family: "Montserrat", system-ui, sans-serif;
   }
 
-  input::-webkit-outer-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
