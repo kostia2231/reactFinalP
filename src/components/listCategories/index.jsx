@@ -1,10 +1,10 @@
-import { DataProvider } from "@/dataFetch/data";
+import { DataProvider } from "@/dataHook/data";
 import ListCategoriesItem from "../listCategoriesItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 
 export default function ListCategories({ limit }) {
   const { data, isLoading, isError, error } = DataProvider();
-
+  console.log(data);
   if (isLoading) return <TypographyH4Muted>Loading...</TypographyH4Muted>;
   if (isError || error) return console.log("Error ", error.message);
 

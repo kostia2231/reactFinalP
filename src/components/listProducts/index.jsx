@@ -1,4 +1,4 @@
-import { DataProvider } from "@/dataFetch/data";
+import { DataProvider } from "@/dataHook/data";
 import ListProductsItem from "../listProductsItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 

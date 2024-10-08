@@ -1,4 +1,4 @@
-import { DataProvider } from "@/dataFetch/data";
+import { DataProvider } from "@/dataHook/data";
 import { useParams } from "react-router-dom";
 import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import { TypographyH2 } from "@/components/ui/typo/typographyH2";

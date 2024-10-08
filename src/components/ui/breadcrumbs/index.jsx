@@ -38,7 +38,8 @@ export default function Breadcrumbs() {
   if (
     location.pathname === "/" ||
     location.pathname === "" ||
-    location.pathname === "/404"
+    location.pathname === "/404" ||
+    location.pathname === "/cart"
   ) {
     return null;
   }
