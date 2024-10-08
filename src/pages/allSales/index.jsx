@@ -7,7 +7,7 @@ export default function AllSales() {
     <div className="m-8">
       <TypographyH1>Discounted items</TypographyH1>
       <SortComponent />
-      <ListProducts limit={100} showAll={false} />
+      <ListProducts showAll={false} />
     </div>
   );
 }

@@ -1,6 +1,23 @@
 import { create } from "zustand";
 
-export const useFilters = create((set) => ({
-  filters: "filters",
-  setFilter: (filters) => set(filters),
+const useStore = create((set) => ({
+  filters: {
+    discount: false,
+    priceRange: { from: 0, to: Infinity },
+    sortOrder: null,
+  },
+  setFilters: (newFilters) =>
+    set((state) => ({
+      filters: { ...state.filters, ...newFilters },
+    })),
+  resetFilters: () =>
+    set({
+      filters: {
+        discount: false,
+        priceRange: { from: 0, to: Infinity },
+        sortOrder: null,
+      },
+    }),
 }));
+
+export default useStore;

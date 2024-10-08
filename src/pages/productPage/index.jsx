@@ -1,4 +1,4 @@
-import { DataProvider } from "@/dataHook/data";
+import { useProducts } from "@/dataHook/data";
 import { useParams } from "react-router-dom";
 import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import { TypographyH2 } from "@/components/ui/typo/typographyH2";
@@ -7,18 +7,16 @@ import { TypographyH4 } from "@/components/ui/typo/typographyH4";
 import { Button } from "@/components/ui/button";
 
 export default function ProductPage() {
-  const { data, status, error } = DataProvider();
+  const { data: products, status, error } = useProducts();
   const { productTitle } = useParams();
-  const product = data?.products?.find(
-    (product) => product?.title === productTitle
-  );
+  const product = products?.find((product) => product?.title === productTitle);
 
   if (status === "loading")
     return <TypographyH4Muted>Loading...</TypographyH4Muted>;
   if (status === "error") return console.log("Error: ", error.message);
 
   return (
-    <div className="m-8 grid grid-cols-2 gap-8">
+    <div className="grid grid-cols-2 gap-8 m-8">
       <div>Gallery </div>
       <div className="flex flex-col gap-8">
         <TypographyH2>{product?.title}</TypographyH2>
@@ -31,16 +29,16 @@ export default function ProductPage() {
           )}
         </div>
         <div className="flex items-center gap-8">
-          <div className="flex items-center gap-8 border h-fit rounded-md">
+          <div className="flex items-center gap-8 border rounded-md h-fit">
             <Button variant="ghost" size="icon" className="m-0 border-r">
-              <p className=" text-5xl font-thin">-</p>
+              <p className="text-5xl font-thin ">-</p>
             </Button>
             <TypographyH4>0</TypographyH4>
             <Button variant="ghost" size="icon" className="m-0 border-l">
-              <p className=" text-4xl font-thin">+</p>
+              <p className="text-4xl font-thin ">+</p>
             </Button>
           </div>
-          <Button className="m-0 h-14 w-screen">Add to cart</Button>
+          <Button className="w-screen m-0 h-14">Add to cart</Button>
         </div>
         <div className="flex flex-col gap-4">
           <TypographyH4 moreStyle="font-semibold">Description</TypographyH4>

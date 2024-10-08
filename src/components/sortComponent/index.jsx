@@ -27,3 +27,12 @@ export default function SortComponent() {
     </div>
   );
 }
+
+// <label>
+// <input
+//   type="checkbox"
+//   checked={filters.discount}
+//   onChange={handleChange}
+// />
+// Показать только продукты со скидкой
+// </label>
