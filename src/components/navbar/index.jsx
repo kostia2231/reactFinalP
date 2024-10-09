@@ -1,9 +1,10 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import MainLogo from "../../assets/svg/logo.svg";
-import Cart from "../../assets/svg/cart.svg";
+import CartLink from "../cartLink";
 
-export default function Navbar() {
+const Navbar = React.memo(() => {
   return (
     <div className="flex items-center justify-between p-8 border-b">
       <div>
@@ -46,10 +47,12 @@ export default function Navbar() {
         </NavLink>
       </nav>
       <div>
-        <NavLink to="/cart">
-          <img src={Cart} alt="Main Logo" />
-        </NavLink>
+        <CartLink />
       </div>
     </div>
   );
-}
+}, "Navbar");
+
+Navbar.displayName = "Navbar";
+
+export default Navbar;

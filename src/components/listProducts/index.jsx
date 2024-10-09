@@ -1,40 +1,41 @@
-///вероятно нужен рефакторинг
-
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import ListProductsItem from "../listProductsItem";
 import { useProducts } from "@/dataHook/data";
 
 export default function ListProducts({
+  // принимаем пропсы и дефолты //
   limit,
   showAll,
-  priceRange,
-  showDiscountedOnly,
-  sortOrder,
+  priceRange = { from: 0, to: Infinity },
+  showDiscountedOnly = false,
+  sortOrder = "default",
 }) {
+  //хукаем дату и тд. //
   const { data: products, isLoading, isError, error } = useProducts();
 
+  // обрабатываем ошибочки и лоадинг //
   if (isLoading) return <TypographyH4Muted>Loading...</TypographyH4Muted>;
   if (isError) {
     console.error("Error:", error.message);
     return <TypographyH4Muted>Error: {error.message}</TypographyH4Muted>;
   }
   if (!products || products.length === 0) {
-    return <TypographyH4Muted>No products available.</TypographyH4Muted>;
+    return (
+      <TypographyH4Muted>
+        It seems like there is no products available.
+      </TypographyH4Muted>
+    );
   }
 
+  // Фильтруем //
   let filteredProducts = products
     .filter(
       (product) =>
-        product.price >= priceRange?.from && product.price <= priceRange?.to
+        product.price >= priceRange.from && product.price <= priceRange.to
     )
     .filter((product) => !showDiscountedOnly || product.discont_price !== null);
 
-  const productsToShow = !showAll
-    ? products
-        .filter((product) => product.discont_price !== null)
-        .slice(0, limit)
-    : filteredProducts;
-
+  // Сортируем //
   if (sortOrder) {
     switch (sortOrder) {
       case "newest":
@@ -53,8 +54,12 @@ export default function ListProducts({
         break;
     }
   }
-  // console.log(sortOrder, filteredProducts);
-  // console.log(products, filteredProducts, productsToShow);
+
+  // Ограничиваем по количеству //
+  const productsToShow = !showAll
+    ? filteredProducts.slice(0, limit)
+    : filteredProducts;
+
   return (
     <div>
       <div className="grid justify-between grid-cols-4 gap-8 my-10">

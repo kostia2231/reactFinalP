@@ -1,7 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 export function useCategories() {
+  const { mutateAsync: addItemMutation } = useMutation({
+    mutationFn: {},
+  });
+
   return useQuery({
     queryKey: ["categories"],
     queryFn: async () => {

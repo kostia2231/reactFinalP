@@ -6,9 +6,11 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function AllProducts() {
+  // импортируем фильтры и вытягиваем локацию из линка //
   const { filters, setFilters, resetFilters } = useStore();
   const { pathname } = useLocation();
 
+  // форматируем локацию с линка для использовании в заголовке категории //
   const formattedLocationPathname = location.pathname
     .split("/")
     .map((part) =>
@@ -31,10 +33,12 @@ export default function AllProducts() {
     setFilters({ sortOrder: sort });
   };
 
+  // сбрасываем фильтры если меняется линк //
   useEffect(() => {
     resetFilters();
   }, [pathname, resetFilters]);
 
+  // показываем только со скидкой на странице скидок //
   const showDiscounted =
     pathname === "/all-sales" ? !filters.discount : filters.discount;
 

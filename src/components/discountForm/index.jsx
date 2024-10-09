@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import DiscountImg from "../../assets/img/discount.png";
 import { useFormik } from "formik";
+// ненавижу формы ужас //
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
@@ -26,6 +27,7 @@ export default function DiscountForm() {
     }
   }, [showPopup]);
 
+  // валидация полей
   const formik = useFormik({
     initialValues: { email: "", name: "", phone: "" },
     onSubmit: (values, { resetForm }) => {

@@ -5,6 +5,7 @@ import Combobox from "../ui/combobox";
 import { useLocation } from "react-router-dom";
 
 export default function SortComponent({
+  // принимаем пропсы акшонов со стора фильтров для хэндлИзменений  //
   onPriceChange,
   onDiscountToggle,
   onSortChange,
@@ -39,6 +40,7 @@ export default function SortComponent({
           onChange={handlePriceToChange}
         />
       </div>
+      {/* показываем чекбокс только если это не страница скидок */}
       {pathname !== "/all-sales" && (
         <div className="flex items-center space-x-4">
           <label
