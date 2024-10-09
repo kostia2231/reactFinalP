@@ -1,3 +1,5 @@
+///вероятно нужен рефакторинг
+
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import ListProductsItem from "../listProductsItem";
 import { useProducts } from "@/dataHook/data";

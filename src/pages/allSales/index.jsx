@@ -1,12 +1,10 @@
-// import ListProducts from "@/components/listProducts";
-// import AllProducts from "../allProducts";
-// import { TypographyH1 } from "@/components/ui/typo/typographyH1";
+import AllProducts from "../allProducts";
+// бэисикли алл продуктс только со скрытым чекбоксом(чекнутым) и все..
 
 export default function AllSales() {
   return (
-    <div className="m-8">
-      {/* <TypographyH1>Discounted items</TypographyH1> */}
-      {/* <AllProducts /> */}
-    </div>
+    <>
+      <AllProducts />
+    </>
   );
 }
