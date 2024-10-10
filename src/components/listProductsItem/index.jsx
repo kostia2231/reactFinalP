@@ -15,12 +15,12 @@ export default function ListProductsItem({ item }) {
             </div>
             <div className="flex gap-4">
               <p className="text-[40px] mt-auto leading-none font-semibold text-accent">
-                ${item.price}
+                ${item.discont_price ? item.discont_price : item.price}
               </p>
 
               {item.discont_price === null || (
                 <p className="mt-auto text-xl font-medium line-through text-muted">
-                  ${item.discont_price}
+                  ${item.price}
                 </p>
               )}
             </div>

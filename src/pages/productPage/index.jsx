@@ -1,5 +1,4 @@
 import { useProducts } from "@/dataHook/data";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import { TypographyH2 } from "@/components/ui/typo/typographyH2";
@@ -9,9 +8,7 @@ import { Button } from "@/components/ui/button";
 import useCartStore from "@/storeHook/storeCart";
 
 export default function ProductPage() {
-  const { addItem, removeItem, items } = useCartStore();
-
-  const [itemQuantity, setQuantity] = useState(0);
+  const { addItem, removeItem, cart } = useCartStore();
   const { data: products, status, error } = useProducts();
   const { productTitle } = useParams();
   const product = products?.find((product) => product?.title === productTitle);
@@ -26,6 +23,12 @@ export default function ProductPage() {
       });
     }
   };
+  // считаем колл. конкретного айтема
+  // const cartItems = useCartStore((state) => state.cart);
+  const item = cart.find((p) => p.id === product?.id);
+  const itemQuantity = item ? item.quantity : 0;
+
+  // console.log(itemQuantity);
 
   if (status === "loading")
     return <TypographyH4Muted>Loading...</TypographyH4Muted>;
@@ -37,10 +40,12 @@ export default function ProductPage() {
       <div className="flex flex-col gap-8">
         <TypographyH2>{product?.title}</TypographyH2>
         <div className="flex gap-8">
-          <TypographyH1>${product?.price}</TypographyH1>
+          <TypographyH1>
+            ${product?.discont_price ? product?.discont_price : product?.price}
+          </TypographyH1>
           {product?.discont_price === null || (
             <p className="mt-auto text-4xl font-medium line-through text-muted">
-              ${product?.discont_price}
+              ${product?.price}
             </p>
           )}
         </div>
