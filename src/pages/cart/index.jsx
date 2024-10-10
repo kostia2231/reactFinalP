@@ -42,7 +42,7 @@ export default function Cart() {
                 </TypographyH2>
                 <div className="flex justify-between">
                   <TypographyH2 moreStyle="text-muted font-[500] mt-auto">
-                    Total price:
+                    Total:
                   </TypographyH2>
                   <TypographyH1>${getTotalPrice()},00</TypographyH1>
                 </div>
