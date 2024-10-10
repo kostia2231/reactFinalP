@@ -17,7 +17,7 @@ export default function SaleComponent() {
           </Badge>
         </Link>
       </div>
-      <ListProducts limit={4} showAll={false} />
+      <ListProducts limit={4} showAll={false} showDiscountedOnly={true} />
     </div>
   );
 }

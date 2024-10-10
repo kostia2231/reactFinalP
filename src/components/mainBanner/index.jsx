@@ -18,7 +18,7 @@ export default function MainBanner() {
             Amazing Discounts <br />
             on Pets Products!
           </h1>
-          <Link to="/all-sales">
+          <Link className="w-fit" to="/all-sales">
             <Button>Check Out</Button>
           </Link>
         </div>
