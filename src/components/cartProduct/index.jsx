@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import useCartStore from "@/storeHook/storeCart";
 
 export default function CartProduct({ product }) {
-  const { addItem, removeItem, cart } = useCartStore();
+  const { addItem, removeItem, clearOneTypeOfItem } = useCartStore();
 
   const handleAddToCart = () => {
     if (product) {
@@ -20,9 +20,15 @@ export default function CartProduct({ product }) {
   return (
     <div className="mb-4 border rounded-xl">
       <div className="flex flex-col gap-8 p-8">
-        <div className="flex justify-between">
+        <div className="flex justify-between h-[20px]">
           <TypographyH4>{product.title}</TypographyH4>
-          <p>X</p>
+          <Button
+            onClick={() => clearOneTypeOfItem(product.id)}
+            variant="ghost"
+            size="icon"
+          >
+            X
+          </Button>
         </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-8 border rounded-md h-fit">

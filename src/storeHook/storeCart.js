@@ -58,7 +58,23 @@ const useCartStore = create(
           totalCount: updatedTotalCount,
         };
       }),
-    clearCart: () => set({ cart: [], totalCount: 0 }),
+
+    clearOneTypeOfItem: (itemId) =>
+      set((state) => {
+        const itemsToRemove = state.cart.filter((p) => p.id === itemId);
+        if (itemsToRemove.length === 0) {
+          return state;
+        }
+        const updatedCart = state.cart.filter((p) => p.id !== itemId);
+        const totalRemovedItems = itemsToRemove.reduce(
+          (total, item) => total + item.quantity,
+          0
+        );
+        return {
+          cart: updatedCart,
+          totalCount: state.totalCount - totalRemovedItems,
+        };
+      }),
 
     getTotalPrice: () => {
       return get().cart.reduce(
@@ -69,6 +85,7 @@ const useCartStore = create(
         0
       );
     },
+
     getCartCount: () => get().totalCount,
   }))
 );

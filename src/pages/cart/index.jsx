@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import useCartStore from "@/storeHook/storeCart";
 import CartProduct from "@/components/cartProduct";
+import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 
 export default function Cart() {
   const { cart, getCartCount, getTotalPrice } = useCartStore();
@@ -22,31 +23,41 @@ export default function Cart() {
           </Badge>
         </Link>
       </div>
-      <div className="grid grid-cols-[2fr_1fr] gap-8">
-        <div>
-          {cart.map((product) => (
-            <CartProduct key={product.id} product={product} />
-          ))}
-        </div>
+      {cart.length !== 0 ? (
+        <div className="grid grid-cols-[2fr_1fr] gap-8">
+          <div>
+            {cart.map((product) => (
+              <CartProduct key={product.id} product={product} />
+            ))}
+          </div>
 
-        <div className=" rounded-xl bg-secondary h-fit">
-          <div className="flex flex-col justify-between p-8">
-            <div className="flex flex-col gap-4">
-              <TypographyH2 moreStyle="font-[700]">Order details</TypographyH2>
-              <TypographyH2 moreStyle="text-muted font-[500]">
-                {getCartCount()} items
-              </TypographyH2>
-              <div className="flex justify-between">
-                <TypographyH2 moreStyle="text-muted font-[500] mt-auto">
-                  Total price:
+          <div className=" rounded-xl bg-secondary h-fit">
+            <div className="flex flex-col justify-between p-8">
+              <div className="flex flex-col gap-4">
+                <TypographyH2 moreStyle="font-[700]">
+                  Order details
                 </TypographyH2>
-                <TypographyH1>${getTotalPrice()},00</TypographyH1>
+                <TypographyH2 moreStyle="text-muted font-[500]">
+                  {getCartCount()} items
+                </TypographyH2>
+                <div className="flex justify-between">
+                  <TypographyH2 moreStyle="text-muted font-[500] mt-auto">
+                    Total price:
+                  </TypographyH2>
+                  <TypographyH1>${getTotalPrice()},00</TypographyH1>
+                </div>
               </div>
+              <Button className="w-full m-0 mt-8">Order</Button>
             </div>
-            <Button className="w-full m-0 mt-8">Order</Button>
           </div>
         </div>
-      </div>
+      ) : (
+        <TypographyH4Muted>
+          Oh no... It's empty.
+          <br />
+          You haven't added anything to your cart yet.
+        </TypographyH4Muted>
+      )}
     </div>
   );
 }
