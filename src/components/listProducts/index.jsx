@@ -74,12 +74,10 @@ export default function ListProducts({
     : filteredProducts;
 
   return (
-    <div>
-      <div className="grid justify-between grid-cols-4 gap-8 my-10">
-        {productsToShow.map((item) => (
-          <ListProductsItem key={item.id} item={item} />
-        ))}
-      </div>
+    <div className="grid justify-between grid-cols-4 gap-8 my-10">
+      {productsToShow.map((item) => (
+        <ListProductsItem key={item.id} item={item} />
+      ))}
     </div>
   );
 }

@@ -6,7 +6,7 @@ export default function ListProductsItem({ item }) {
     <div className="border rounded-xl">
       <Link to={`/all-products/${item.title}`}>
         <div className="bg-slate-200 h-[350px] w-full rounded-xl"></div>
-        <div className="flex flex-col items-center justify-center gap-4 p-8 mb-auto ">
+        <div className="flex flex-col items-center justify-center gap-4 p-8 mb-auto">
           {/* <img src={item.image} alt="Sales Image" /> */}
           <div className="grid gap-4">
             <div>
