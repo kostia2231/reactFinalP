@@ -37,7 +37,7 @@ export default function ProductPage() {
   //
   return (
     <div className="grid grid-cols-2 gap-8 m-8">
-      <div>Gallery </div>
+      <div className="bg-secondary rounded-xl h-[700px]"></div>
       <div className="flex flex-col gap-8">
         <TypographyH2>{product?.title}</TypographyH2>
         <div className="flex gap-8">
