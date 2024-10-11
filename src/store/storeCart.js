@@ -84,6 +84,11 @@ const useCartStore = create(
         },
 
         getCartCount: () => get().totalCount,
+        clearCart: () =>
+          set(() => ({
+            cart: [],
+            totalCount: 0,
+          })),
       }),
       {
         name: "cart-storage",

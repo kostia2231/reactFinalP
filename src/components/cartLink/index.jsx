@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import CartIcon from "../../assets/svg/cart.svg";
-import useCartStore from "@/storeHook/storeCart";
+import useCartStore from "@/store/storeCart";
 
 export default function CartLink() {
   const cartCount = useCartStore((state) => state.getCartCount());

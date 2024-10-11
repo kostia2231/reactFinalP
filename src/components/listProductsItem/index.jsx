@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import { TypographyH4 } from "../ui/typo/typographyH4";
 
 export default function ListProductsItem({ item }) {
-  console.log();
   return (
-    <>
+    <div className="border rounded-xl">
       <Link to={`/all-products/${item.title}`}>
-        <div className="flex flex-col items-center justify-center gap-4 mb-auto">
-          <div className="bg-slate-200 h-[350px] w-[316px] rounded-xl"></div>
+        <div className="bg-slate-200 h-[350px] w-full rounded-xl"></div>
+        <div className="flex flex-col items-center justify-center gap-4 p-8 mb-auto ">
           {/* <img src={item.image} alt="Sales Image" /> */}
           <div className="grid gap-4">
             <div>
-              <TypographyH4 moreStyle="w-[316px]">{item.title}</TypographyH4>
+              <TypographyH4 moreStyle="w-[316px] truncate">
+                {item.title}
+              </TypographyH4>
             </div>
             <div className="flex gap-4">
               <p className="text-[40px] mt-auto leading-none font-semibold text-accent">
@@ -27,6 +28,6 @@ export default function ListProductsItem({ item }) {
           </div>
         </div>
       </Link>
-    </>
+    </div>
   );
 }

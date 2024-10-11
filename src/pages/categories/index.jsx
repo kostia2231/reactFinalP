@@ -5,7 +5,7 @@ export default function Categories() {
   return (
     <div className="m-8">
       <TypographyH1>Categories</TypographyH1>
-      <ListCategories limit={100} />
+      <ListCategories />
     </div>
   );
 }

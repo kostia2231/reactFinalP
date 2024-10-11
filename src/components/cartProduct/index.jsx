@@ -1,7 +1,8 @@
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import { TypographyH2 } from "../ui/typo/typographyH2";
 import { Button } from "../ui/button";
-import useCartStore from "@/storeHook/storeCart";
+import useCartStore from "@/store/storeCart";
+import { X, Plus, Minus } from "lucide-react";
 
 export default function CartProduct({ product }) {
   const { addItem, removeItem, clearOneTypeOfItem } = useCartStore();
@@ -27,7 +28,7 @@ export default function CartProduct({ product }) {
             variant="ghost"
             size="icon"
           >
-            X
+            <X />
           </Button>
         </div>
         <div className="flex items-center gap-4">
@@ -38,7 +39,9 @@ export default function CartProduct({ product }) {
               size="icon"
               className="m-0 border-r"
             >
-              <p className="text-5xl font-thin">-</p>
+              <p className="text-5xl font-thin">
+                <Minus />
+              </p>
             </Button>
             <TypographyH4>{product.quantity}</TypographyH4>
             <Button
@@ -47,7 +50,9 @@ export default function CartProduct({ product }) {
               size="icon"
               className="m-0 border-l"
             >
-              <p className="text-4xl font-thin">+</p>
+              <p className="text-4xl font-thin">
+                <Plus />
+              </p>
             </Button>
           </div>
           <div className="mt-auto">

@@ -1,4 +1,4 @@
-import { useCategories } from "@/dataHook/data"; // Импортируем новый хук
+import { useCategories } from "@/data/data"; // Импортируем новый хук
 import ListCategoriesItem from "../listCategoriesItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 

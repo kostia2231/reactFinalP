@@ -1,6 +1,6 @@
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import ListProductsItem from "../listProductsItem";
-import { useProducts } from "@/dataHook/data";
+import { useProducts } from "@/data/data";
 
 export default function ListProducts({
   // принимаем пропсы и дефолты //
@@ -31,11 +31,16 @@ export default function ListProducts({
   let filteredProducts = products
     .filter(
       (product) =>
-        product.price >= priceRange.from && product.price <= priceRange.to
+        (product.discont_price ? product.discont_price : product.price) >=
+          priceRange.from &&
+        (product.discont_price ? product.discont_price : product.price) <=
+          priceRange.to
     )
     .filter((product) => !showDiscountedOnly || product.discont_price !== null);
 
   // Сортируем //
+  // (добавить условие цен) (блин снова забыл что цена и скидочная цена это разные вещи >.<)
+  // !дата кстати одинаковая поэтому сортировка не происходит
   if (sortOrder) {
     switch (sortOrder) {
       case "newest":
@@ -44,10 +49,18 @@ export default function ListProducts({
         );
         break;
       case "price:low-high":
-        filteredProducts.sort((a, b) => a.price - b.price);
+        filteredProducts.sort(
+          (a, b) =>
+            (a.discont_price ? a.discont_price : a.price) -
+            (b.discont_price ? b.discont_price : b.price)
+        );
         break;
       case "price:high-low":
-        filteredProducts.sort((a, b) => b.price - a.price);
+        filteredProducts.sort(
+          (a, b) =>
+            (b.discont_price ? b.discont_price : b.price) -
+            (a.discont_price ? a.discont_price : a.price)
+        );
         break;
       case "default":
       default:

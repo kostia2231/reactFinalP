@@ -1,11 +1,12 @@
-import { useProducts } from "@/dataHook/data";
+import { useProducts } from "@/data/data";
 import { useParams } from "react-router-dom";
 import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import { TypographyH2 } from "@/components/ui/typo/typographyH2";
 import { TypographyH1 } from "@/components/ui/typo/typographyH1";
 import { TypographyH4 } from "@/components/ui/typo/typographyH4";
 import { Button } from "@/components/ui/button";
-import useCartStore from "@/storeHook/storeCart";
+import useCartStore from "@/store/storeCart";
+import { Plus, Minus } from "lucide-react";
 
 export default function ProductPage() {
   const { addItem, removeItem, cart } = useCartStore();
@@ -57,7 +58,9 @@ export default function ProductPage() {
               size="icon"
               className="m-0 border-r"
             >
-              <p className="text-5xl font-thin ">-</p>
+              <p className="text-5xl font-thin ">
+                <Minus />
+              </p>
             </Button>
             <TypographyH4>{itemQuantity}</TypographyH4>
             <Button
@@ -66,7 +69,9 @@ export default function ProductPage() {
               size="icon"
               className="m-0 border-l"
             >
-              <p className="text-4xl font-thin ">+</p>
+              <p className="text-4xl font-thin ">
+                <Plus />
+              </p>
             </Button>
           </div>
           <Button onClick={handleAddToCart} className="w-screen m-0 h-14">

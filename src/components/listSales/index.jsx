@@ -1,4 +1,4 @@
-import { useData } from "@/dataHook/data";
+import { useData } from "@/data/data";
 import ListProductsItem from "../listProductsItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 
