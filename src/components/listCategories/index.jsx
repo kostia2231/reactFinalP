@@ -1,4 +1,4 @@
-import { useCategories } from "@/dataHook/data"; // Импортируем новый хук
+import { useCategories } from "@/data/data"; // Импортируем новый хук
 import ListCategoriesItem from "../listCategoriesItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 
@@ -18,7 +18,7 @@ export default function ListCategories({ limit }) {
   }
 
   return (
-    <div className="grid justify-between grid-cols-4 gap-8 my-10">
+    <div className="grid justify-between grid-cols-4 gap-8 mx-auto my-10">
       {limitedData.map((item) => (
         <div key={item.id}>
           <ListCategoriesItem item={item} />

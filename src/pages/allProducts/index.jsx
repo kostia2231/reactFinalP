@@ -1,37 +1,50 @@
 import { TypographyH1 } from "@/components/ui/typo/typographyH1";
 import ListProducts from "@/components/listProducts";
 import SortComponent from "@/components/sortComponent";
-import useStore from "@/storeHook/store";
+import useStore from "@/store/store";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 
 export default function AllProducts() {
-  // импортируем фильтры и вытягиваем локацию из линка //
-  const { filters, setFilters, resetFilters } = useStore();
+  // импортируем фильтры (по одному стейту для предотвращения ререндеров)  и вытягиваем локацию из линка //
+  const filters = useStore((state) => state.filters);
+  const setFilters = useStore((state) => state.setFilters);
+  const resetFilters = useStore((state) => state.resetFilters);
+
   const { pathname } = useLocation();
 
   // форматируем локацию с линка для использовании в заголовке категории //
-  const formattedLocationPathname = location.pathname
-    .split("/")
-    .map((part) =>
-      part
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ")
-    )
-    .join(" ");
+  const formattedLocationPathname = useMemo(() => {
+    return pathname
+      .split("/")
+      .map((part) =>
+        part
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+      )
+      .join(" ");
+  }, [pathname]);
 
-  const handlePriceChange = (from, to) => {
-    setFilters({ priceRange: { from: from || 0, to: to || Infinity } });
-  };
+  const handlePriceChange = useCallback(
+    (from, to) => {
+      setFilters({ priceRange: { from: from || 0, to: to || Infinity } });
+    },
+    [setFilters]
+  );
 
-  const handleDiscountToggle = () => {
-    setFilters({ discount: !filters.discount });
-  };
+  const handleDiscountToggle = useCallback(() => {
+    setFilters({
+      discount: !filters.discount,
+    });
+  }, [setFilters, filters.discount]);
 
-  const handleSortChange = (sort) => {
-    setFilters({ sortOrder: sort });
-  };
+  const handleSortChange = useCallback(
+    (sort) => {
+      setFilters({ sortOrder: sort });
+    },
+    [setFilters]
+  );
 
   // сбрасываем фильтры если меняется линк //
   useEffect(() => {

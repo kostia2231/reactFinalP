@@ -13,12 +13,20 @@ const useStore = create(
         filters: { ...state.filters, ...newFilters },
       })),
     resetFilters: () =>
-      set({
-        filters: {
+      set((state) => {
+        const defaultFilters = {
           discount: false,
           priceRange: { from: 0, to: Infinity },
           sortOrder: null,
-        },
+        };
+
+        // тут важно проверить что если текущий фильтр соответствует дефолтному
+        // то просто возвращать стейт и не перерендывать компонент целиком
+        if (JSON.stringify(state.filters) === JSON.stringify(defaultFilters)) {
+          return state;
+        }
+
+        return { filters: defaultFilters };
       }),
   }))
 );

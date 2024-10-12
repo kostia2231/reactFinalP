@@ -1,24 +1,41 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "../ui/button";
-import { useFormik } from "formik";
 import { validateForm } from "@/lib/validation";
+import { Input } from "@/components/ui/input";
+import { useFormik } from "formik";
+import { Button } from "@/components/ui/button";
+import useSendUpdateData from "@/data/mutateData";
+import useCartStore from "@/store/storeCart";
 
-export default function FormComponent({ setShowPopup }) {
+export default function OrderForm({ cart }) {
+  const clearCart = useCartStore((state) => state.clearCart);
+  const { sendOrder } = useSendUpdateData();
+  const data = cart.map(({ id, quantity }) => ({ id, quantity }));
+
   const formik = useFormik({
-    initialValues: { email: "", name: "", phone: "" },
-    onSubmit: (values, { resetForm }) => {
-      console.log("onSubmit", values);
-      resetForm();
-      setShowPopup(true);
+    initialValues: {
+      name: "",
+      phone: "",
+      email: "",
+      products: data,
+    },
+
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        await sendOrder(values);
+        console.log("This data is sent: ", values);
+        resetForm();
+        clearCart();
+      } catch (error) {
+        console.log(error);
+      }
     },
     validate: validateForm,
   });
-  //
+
   return (
     <>
       <form
+        className="flex flex-col gap-4 pt-8 mt-auto"
         onSubmit={formik.handleSubmit}
-        className="flex flex-col gap-4 p-8 mt-auto"
       >
         {["name", "phone", "email"].map((field, index) => (
           <Input
@@ -39,12 +56,12 @@ export default function FormComponent({ setShowPopup }) {
             className={`border ${
               formik.touched[field] && formik.errors[field]
                 ? "border-red-400 placeholder-red-400"
-                : "placeholder-white"
-            }`}
+                : "placeholder-muted"
+            } bg-white text-accent focus-visible:ring-none`}
           />
         ))}
-        <Button type="submit" variant="secondary" className="w-full mt-4">
-          Get a discount
+        <Button type="submit" className="w-full mt-4">
+          Order
         </Button>
       </form>
     </>

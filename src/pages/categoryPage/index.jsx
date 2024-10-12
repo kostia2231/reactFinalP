@@ -1,4 +1,4 @@
-import { useCombinedData } from "@/dataHook/data";
+import { useCombinedData } from "@/data/data";
 import { useParams } from "react-router-dom";
 import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import { TypographyH1 } from "@/components/ui/typo/typographyH1";
@@ -26,7 +26,6 @@ export default function CategoryPage() {
   if (!thisCategories) {
     return <TypographyH4Muted>Category not found</TypographyH4Muted>;
   }
-
   return (
     <div className="m-8">
       <TypographyH1>{thisCategories?.title}</TypographyH1>

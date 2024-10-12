@@ -1,11 +1,11 @@
 import { TypographyH1 } from "@/components/ui/typo/typographyH1";
 import { TypographyH2 } from "@/components/ui/typo/typographyH2";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
-import useCartStore from "@/storeHook/storeCart";
+import useCartStore from "@/store/storeCart";
 import CartProduct from "@/components/cartProduct";
 import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
+import OrderForm from "@/components/orderForm";
 
 export default function Cart() {
   const { cart, getCartCount, getTotalPrice } = useCartStore();
@@ -47,7 +47,7 @@ export default function Cart() {
                   <TypographyH1>${getTotalPrice()},00</TypographyH1>
                 </div>
               </div>
-              <Button className="w-full m-0 mt-8">Order</Button>
+              <OrderForm cart={cart} />
             </div>
           </div>
         </div>

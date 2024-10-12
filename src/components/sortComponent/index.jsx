@@ -1,11 +1,11 @@
-import { Checkbox } from "@/components/ui/checkbox";
+import React from "react";
+import DiscountCheckbox from "../checkboxComponent";
 import { InputSearch } from "@/components/ui/inputSearch";
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import Combobox from "../ui/combobox";
 import { useLocation } from "react-router-dom";
 
-export default function SortComponent({
-  // принимаем пропсы акшонов со стора фильтров для хэндлИзменений  //
+const SortComponent = React.memo(function SortComponent({
   onPriceChange,
   onDiscountToggle,
   onSortChange,
@@ -43,14 +43,7 @@ export default function SortComponent({
       {/* показываем чекбокс только если это не страница скидок */}
       {pathname !== "/all-sales" && (
         <div className="flex items-center space-x-4">
-          <label
-            htmlFor="terms"
-            className="text-xl font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Discounted items
-          </label>
-
-          <Checkbox id="terms" onCheckedChange={onDiscountToggle} />
+          <DiscountCheckbox onChange={onDiscountToggle} />
         </div>
       )}
       <div className="flex items-center gap-4">
@@ -59,4 +52,6 @@ export default function SortComponent({
       </div>
     </div>
   );
-}
+});
+
+export default SortComponent;

@@ -24,7 +24,7 @@ export default function DiscountForm() {
   }, [showPopup]);
 
   return (
-    <div className="grid m-8 rounded-md bg-primary">
+    <div className="grid m-8 rounded-md bg-primary max-w-[1440px] mx-auto">
       {showPopup && <PopUpComponent closePopup={closePopup} />}
 
       <h1 className="pt-8 mx-auto text-6xl font-bold text-white">

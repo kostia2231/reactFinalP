@@ -11,7 +11,7 @@ const InputSearch = React.forwardRef(({ className, type, ...props }, ref) => {
       type={type}
       onWheel={handleWheel}
       className={cn(
-        "max-w-[115px] border rounded-lg px-4 py-2 focus-visible:outline-primary",
+        "hover:border-secondary max-w-[115px] border rounded-lg px-4 py-2 focus-visible:outline-primary",
         className
       )}
       ref={ref}
