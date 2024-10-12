@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import useSendUpdateData from "@/data/mutateData";
 import useCartStore from "@/store/storeCart";
 
-export default function OrderForm({ cart }) {
+export default function OrderForm({ cart, setShowPopup }) {
   const clearCart = useCartStore((state) => state.clearCart);
   const { sendOrder } = useSendUpdateData();
   const data = cart.map(({ id, quantity }) => ({ id, quantity }));
 
   const formik = useFormik({
+    validateOnChange: false,
+    validateOnBlur: false,
     initialValues: {
       name: "",
       phone: "",
@@ -22,6 +24,7 @@ export default function OrderForm({ cart }) {
       try {
         await sendOrder(values);
         console.log("This data is sent: ", values);
+        setShowPopup(true);
         resetForm();
         clearCart();
       } catch (error) {

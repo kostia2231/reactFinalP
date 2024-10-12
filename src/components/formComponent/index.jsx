@@ -6,6 +6,8 @@ import { validateForm } from "@/lib/validation";
 export default function FormComponent({ setShowPopup }) {
   const formik = useFormik({
     initialValues: { email: "", name: "", phone: "" },
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: (values, { resetForm }) => {
       console.log("onSubmit", values);
       resetForm();

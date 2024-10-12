@@ -25,7 +25,9 @@ export default function DiscountForm() {
 
   return (
     <div className="grid m-8 rounded-md bg-primary max-w-[1440px] mx-auto">
-      {showPopup && <PopUpComponent closePopup={closePopup} />}
+      {showPopup && (
+        <PopUpComponent closePopup={closePopup} isDiscount={true} />
+      )}
 
       <h1 className="pt-8 mx-auto text-6xl font-bold text-white">
         5% off on the first order

@@ -6,12 +6,31 @@ import useCartStore from "@/store/storeCart";
 import CartProduct from "@/components/cartProduct";
 import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import OrderForm from "@/components/orderForm";
+import PopUpComponent from "@/components/popUpComponent";
+import { useState, useEffect } from "react";
 
 export default function Cart() {
   const { cart, getCartCount, getTotalPrice } = useCartStore();
+  const [showPopup, setShowPopup] = useState(false);
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+  useEffect(() => {
+    if (showPopup) {
+      const handleClose = () => {
+        closePopup();
+      };
+      window.addEventListener("click", handleClose);
+      return () => {
+        window.removeEventListener("click", handleClose);
+      };
+    }
+  }, [showPopup]);
 
   return (
     <div className="grid gap-8 m-8">
+      {showPopup && <PopUpComponent closePopup={closePopup} />}
+
       <div className="flex items-center justify-between">
         <TypographyH1>Shopping Cart</TypographyH1>
         <div className="flex-grow ml-8">
@@ -47,7 +66,7 @@ export default function Cart() {
                   <TypographyH1>${getTotalPrice()},00</TypographyH1>
                 </div>
               </div>
-              <OrderForm cart={cart} />
+              <OrderForm cart={cart} setShowPopup={setShowPopup} />
             </div>
           </div>
         </div>
