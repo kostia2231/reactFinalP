@@ -7,6 +7,7 @@ import { TypographyH4 } from "@/components/ui/typo/typographyH4";
 import { Button } from "@/components/ui/button";
 import useCartStore from "@/store/storeCart";
 import { Plus, Minus } from "lucide-react";
+import DiscountBadge from "@/components/ui/discountBadge";
 
 export default function ProductPage() {
   const { addItem, removeItem, cart } = useCartStore();
@@ -29,6 +30,10 @@ export default function ProductPage() {
   const item = cart.find((p) => p.id === product?.id);
   const itemQuantity = item ? item.quantity : 0;
 
+  const discount = Math.round(
+    ((product?.price - product?.discont_price) / product?.discont_price) * 100
+  );
+
   // console.log(itemQuantity);
 
   if (status === "loading")
@@ -49,6 +54,9 @@ export default function ProductPage() {
               ${product?.price}
             </p>
           )}
+          {product?.discont_price ? (
+            <DiscountBadge discount={discount} moreStyle="block " />
+          ) : null}
         </div>
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-8 border rounded-md h-fit">
