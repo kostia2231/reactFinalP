@@ -17,5 +17,20 @@ export default function useSendUpdateData() {
     },
   });
 
-  return { sendOrder };
+  const { mutateAsync: sendSale } = useMutation({
+    mutationFn: async (data) => {
+      const response = await axios.post(
+        "http://localhost:3333/sale/send",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response.data;
+    },
+  });
+
+  return { sendOrder, sendSale };
 }
