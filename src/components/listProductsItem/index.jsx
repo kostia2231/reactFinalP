@@ -2,8 +2,25 @@ import { Link } from "react-router-dom";
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import DiscountBadge from "../ui/discountBadge";
 import { Button } from "../ui/button";
+import useCartStore from "@/store/storeCart";
 
 export default function ListProductsItem({ item }) {
+  const addItem = useCartStore((state) => state.addItem);
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (item) {
+      addItem({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        discont_price: item.discont_price,
+        img: item.image,
+      });
+    }
+  };
+
   const discount = Math.round(
     ((item.price - item.discont_price) / item.discont_price) * 100
   );
@@ -15,7 +32,12 @@ export default function ListProductsItem({ item }) {
             <DiscountBadge discount={discount} moreStyle="absolute m-4" />
           ) : null}
           <div className="absolute bottom-0 hidden w-full p-4 group-hover:block">
-            <Button className="bottom-0 w-full mx-auto">Add to cart</Button>
+            <Button
+              onClick={handleAddToCart}
+              className="bottom-0 w-full mx-auto"
+            >
+              Add to cart
+            </Button>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-4 p-8 mb-auto">

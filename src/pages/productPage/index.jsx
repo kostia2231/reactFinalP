@@ -10,8 +10,13 @@ import { Plus, Minus } from "lucide-react";
 import DiscountBadge from "@/components/ui/discountBadge";
 
 export default function ProductPage() {
-  const { addItem, removeItem, cart } = useCartStore();
+  const addItem = useCartStore((state) => state.addItem);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const cart = useCartStore((state) => state.cart);
+
   const { data: products, status, error } = useProducts();
+  
+
   const { productTitle } = useParams();
   const product = products?.find((product) => product?.title === productTitle);
   const handleAddToCart = () => {
@@ -55,7 +60,7 @@ export default function ProductPage() {
             </p>
           )}
           {product?.discont_price ? (
-            <DiscountBadge discount={discount} moreStyle="block " />
+            <DiscountBadge discount={discount} moreStyle="block" />
           ) : null}
         </div>
         <div className="flex items-center gap-8">
