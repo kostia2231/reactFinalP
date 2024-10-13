@@ -24,22 +24,24 @@ export default function DiscountForm() {
   }, [showPopup]);
 
   return (
-    <div className="grid m-8 rounded-md bg-primary max-w-[1440px] mx-auto">
-      {showPopup && (
-        <PopUpComponent closePopup={closePopup} isDiscount={true} />
-      )}
+    <div className="grid m-8 rounded-md bg-primary">
+      <div className="mx-auto">
+        {showPopup && (
+          <PopUpComponent closePopup={closePopup} isDiscount={true} />
+        )}
 
-      <h1 className="pt-8 mx-auto text-6xl font-bold text-white">
-        5% off on the first order
-      </h1>
-      <div className="grid grid-cols-[2fr_1fr] gap-6">
-        <img
-          src={DiscountImg}
-          alt="Discount Image"
-          className="w-full h-auto mt-auto"
-        />
+        <h1 className="pt-8 text-6xl font-bold text-center text-white ">
+          5% off on the first order
+        </h1>
+        <div className="grid grid-cols-[2fr_1fr] gap-6">
+          <img
+            src={DiscountImg}
+            alt="Discount Image"
+            className="w-full h-auto mt-auto"
+          />
 
-        <FormComponent setShowPopup={setShowPopup} />
+          <FormComponent setShowPopup={setShowPopup} />
+        </div>
       </div>
     </div>
   );

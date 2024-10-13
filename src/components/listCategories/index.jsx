@@ -18,7 +18,7 @@ export default function ListCategories({ limit }) {
   }
 
   return (
-    <div className="grid justify-between grid-cols-4 gap-8 mx-auto my-10">
+    <div className="grid justify-between gap-8 my-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 max-w-[1550px] mx-auto">
       {limitedData.map((item) => (
         <div key={item.id}>
           <ListCategoriesItem item={item} />
