@@ -6,7 +6,6 @@ import CartLink from "../cartLink";
 
 const Navbar = React.memo(() => {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div className="flex items-center justify-between p-8 border-b">
       <div>

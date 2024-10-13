@@ -5,8 +5,8 @@ export default function PopUpComponent({ closePopup, isDiscount }) {
   // console.log(isDiscount);
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 ">
-        <div className="relative flex gap-4 p-8 rounded-lg shadow-lg bg-primary max-w-[700px]">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 ">
+        <div className="relative flex gap-4 p-8 rounded-lg shadow-lg bg-primary max-w-[700px] z-50">
           <div className="mr-8">
             <h2 className="mb-4 text-4xl font-semibold text-white">
               Congratulations!{" "}

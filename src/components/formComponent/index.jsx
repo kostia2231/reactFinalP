@@ -2,20 +2,28 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { useFormik } from "formik";
 import { validateForm } from "@/lib/validation";
+import useSendUpdateData from "@/data/mutateData";
 
 export default function FormComponent({ setShowPopup }) {
+  const { sendSale } = useSendUpdateData();
+
   const formik = useFormik({
-    initialValues: { email: "", name: "", phone: "" },
     validateOnChange: false,
     validateOnBlur: false,
-    onSubmit: (values, { resetForm }) => {
-      console.log("onSubmit", values);
-      resetForm();
-      setShowPopup(true);
+    initialValues: { email: "", name: "", phone: "", userId: "" },
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        await sendSale(values);
+        console.log("This data is sent: ", values);
+        resetForm();
+        setShowPopup(true);
+      } catch (error) {
+        console.log(error);
+      }
     },
     validate: validateForm,
   });
-  //
+
   return (
     <>
       <form
