@@ -23,8 +23,6 @@ function App() {
           <Navbar />
           <Breadcrumbs />
           <Routes>
-            <Route path="*" element={<Navigate to="/404" replace />} />
-            <Route path="/404" element={<NotFound />} />
             <Route path="/" element={<Main />} />
             <Route path="/categories" element={<Categories />} />
             <Route
@@ -42,6 +40,8 @@ function App() {
             />
             <Route path="/all-sales" element={<AllSales />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
+            <Route path="/404" element={<NotFound />} />
           </Routes>
         </div>
         <div>
