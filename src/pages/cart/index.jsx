@@ -26,7 +26,7 @@ export default function Cart() {
       };
     }
   }, [showPopup]);
-
+  //
   return (
     <div className="grid gap-8 m-8">
       {showPopup && <PopUpComponent closePopup={closePopup} />}
@@ -43,7 +43,7 @@ export default function Cart() {
         </Link>
       </div>
       {cart.length !== 0 ? (
-        <div className="grid grid-cols-[2fr_1fr] gap-8">
+        <div className="grid grid-cols-[1fr] gap-8 xl:grid-cols-[2fr_1fr] ">
           <div>
             {cart.map((product) => (
               <CartProduct key={product.id} product={product} />
@@ -72,9 +72,9 @@ export default function Cart() {
         </div>
       ) : (
         <TypographyH4Muted>
-          Oh no... It's empty.
+          Oh no... It is empty.
           <br />
-          You haven't added anything to your cart yet.
+          You have not added anything to your cart yet.
         </TypographyH4Muted>
       )}
     </div>

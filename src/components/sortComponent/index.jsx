@@ -4,6 +4,7 @@ import { InputSearch } from "@/components/ui/inputSearch";
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import Combobox from "../ui/combobox";
 import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const SortComponent = React.memo(function SortComponent({
   onPriceChange,
@@ -55,3 +56,9 @@ const SortComponent = React.memo(function SortComponent({
 });
 
 export default SortComponent;
+
+SortComponent.propTypes = {
+  onPriceChange: PropTypes.func.isRequired,
+  onDiscountToggle: PropTypes.func.isRequired,
+  onSortChange: PropTypes.func.isRequired,
+};

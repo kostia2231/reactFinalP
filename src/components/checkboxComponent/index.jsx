@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import PropTypes from "prop-types";
 
 export default function DiscountCheckbox({ onChange }) {
   return (
@@ -26,3 +27,7 @@ export default function DiscountCheckbox({ onChange }) {
     </>
   );
 }
+
+DiscountCheckbox.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};

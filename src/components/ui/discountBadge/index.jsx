@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function DiscountBadge({ discount, moreStyle }) {
   return (
     <>
@@ -9,3 +11,8 @@ export default function DiscountBadge({ discount, moreStyle }) {
     </>
   );
 }
+
+DiscountBadge.propTypes = {
+  discount: PropTypes.number,
+  moreStyle: PropTypes.string,
+};

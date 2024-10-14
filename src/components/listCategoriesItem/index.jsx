@@ -1,5 +1,6 @@
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function ListCategoriesItem({ item }) {
   return (
@@ -15,3 +16,7 @@ export default function ListCategoriesItem({ item }) {
     </div>
   );
 }
+
+ListCategoriesItem.propTypes = {
+  item: PropTypes.object.isRequired,
+};

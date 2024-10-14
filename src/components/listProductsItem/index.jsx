@@ -3,6 +3,7 @@ import { TypographyH4 } from "../ui/typo/typographyH4";
 import DiscountBadge from "../ui/discountBadge";
 import { Button } from "../ui/button";
 import useCartStore from "@/store/storeCart";
+import PropTypes from "prop-types";
 
 export default function ListProductsItem({ item }) {
   const addItem = useCartStore((state) => state.addItem);
@@ -41,8 +42,8 @@ export default function ListProductsItem({ item }) {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-4 p-8 mb-auto">
-          {/* <img src={item.image} alt="Sales Image" /> */}
-          <div className="grid gap-4">
+          {/* <img src=`URL${item.image}` alt="Sales Image" /> */}
+          <div className="grid gap-4 mr-auto">
             <div>
               <TypographyH4 moreStyle="line-clamp-1">{item.title}</TypographyH4>
             </div>
@@ -63,3 +64,13 @@ export default function ListProductsItem({ item }) {
     </div>
   );
 }
+
+ListProductsItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    discont_price: PropTypes.number,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
+};

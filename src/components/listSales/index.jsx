@@ -1,6 +1,7 @@
 import { useData } from "@/data/data";
 import ListProductsItem from "../listProductsItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
+import PropTypes from "prop-types";
 
 export default function ListProducts({ limit }) {
   const { data, status, error } = useData();
@@ -21,3 +22,7 @@ export default function ListProducts({ limit }) {
     </>
   );
 }
+
+ListProducts.propTypes = {
+  limit: PropTypes.number,
+};

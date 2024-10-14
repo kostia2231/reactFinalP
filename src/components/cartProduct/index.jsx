@@ -3,6 +3,7 @@ import { TypographyH2 } from "../ui/typo/typographyH2";
 import { Button } from "../ui/button";
 import useCartStore from "@/store/storeCart";
 import { X, Plus, Minus } from "lucide-react";
+import PropTypes from "prop-types";
 
 export default function CartProduct({ product }) {
   const { addItem, removeItem, clearOneTypeOfItem } = useCartStore();
@@ -75,3 +76,14 @@ export default function CartProduct({ product }) {
     </div>
   );
 }
+
+CartProduct.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    discont_price: PropTypes.number,
+    image: PropTypes.string.isRequired,
+    quantity: PropTypes.number,
+  }).isRequired,
+};

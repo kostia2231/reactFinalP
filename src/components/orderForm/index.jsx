@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { Button } from "@/components/ui/button";
 import useSendUpdateData from "@/data/mutateData";
 import useCartStore from "@/store/storeCart";
+import PropTypes from "prop-types";
 
 export default function OrderForm({ cart, setShowPopup }) {
   const clearCart = useCartStore((state) => state.clearCart);
@@ -70,3 +71,8 @@ export default function OrderForm({ cart, setShowPopup }) {
     </>
   );
 }
+
+OrderForm.propTypes = {
+  cart: PropTypes.object.isRequired,
+  setShowPopup: PropTypes.func.isRequired,
+};

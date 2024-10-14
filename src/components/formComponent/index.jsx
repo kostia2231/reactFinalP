@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { useFormik } from "formik";
 import { validateForm } from "@/lib/validation";
 import useSendUpdateData from "@/data/mutateData";
+import PropTypes from "prop-types";
 
 export default function FormComponent({ setShowPopup }) {
   const { sendSale } = useSendUpdateData();
@@ -60,3 +61,7 @@ export default function FormComponent({ setShowPopup }) {
     </>
   );
 }
+
+FormComponent.propTypes = {
+  setShowPopup: PropTypes.func.isRequired,
+};

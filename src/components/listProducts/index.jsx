@@ -1,6 +1,7 @@
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import ListProductsItem from "../listProductsItem";
 import { useProducts } from "@/data/data";
+import PropTypes from "prop-types";
 
 export default function ListProducts({
   // принимаем пропсы и дефолты //
@@ -81,3 +82,24 @@ export default function ListProducts({
     </div>
   );
 }
+
+ListProducts.propTypes = {
+  limit: PropTypes.number.isRequired,
+  showAll: PropTypes.bool.isRequired,
+  priceRange: PropTypes.shape({
+    from: PropTypes.number.isRequired,
+    to: PropTypes.number.isRequired,
+  }).isRequired,
+  showDiscountedOnly: PropTypes.bool,
+  sortOrder: PropTypes.oneOf([
+    "default",
+    "newest",
+    "price:low-high",
+    "price:high-low",
+  ]),
+};
+
+ListProducts.defaultProps = {
+  showDiscountedOnly: false,
+  sortOrder: "default",
+};

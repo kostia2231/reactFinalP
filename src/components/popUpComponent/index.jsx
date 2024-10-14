@@ -1,5 +1,6 @@
 import { Button } from "../ui/button";
 import { X } from "lucide-react";
+import PropTypes from "prop-types";
 
 export default function PopUpComponent({ closePopup, isDiscount }) {
   // console.log(isDiscount);
@@ -9,16 +10,16 @@ export default function PopUpComponent({ closePopup, isDiscount }) {
         <div className="relative flex gap-4 p-8 rounded-lg shadow-lg bg-primary max-w-[700px] z-50">
           <div className="mr-8">
             <h2 className="mb-4 text-4xl font-semibold text-white">
-              Congratulations!{" "}
+              Congratulations!
             </h2>
             {!isDiscount ? (
               <p className="text-xl text-white">
-                Your order has been successfully placed on the website.
+                Your order has been successfully placed on the website.
                 <br />
                 <br />
-                A manager will contact you shortly
+                A manager will contact you shortly
                 <br />
-                to confirm your order.
+                to confirm your order.
               </p>
             ) : null}
             {isDiscount ? (
@@ -35,3 +36,8 @@ export default function PopUpComponent({ closePopup, isDiscount }) {
     </>
   );
 }
+
+PopUpComponent.propTypes = {
+  closePopup: PropTypes.func.isRequired,
+  isDiscount: PropTypes.bool.isRequired,
+};
