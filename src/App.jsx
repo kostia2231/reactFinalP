@@ -40,6 +40,10 @@ function App() {
                 element={<ProductPage />}
               />
               <Route path="/all-sales" element={<AllSales />} />
+              <Route
+                path="/all-sales/:productTitle"
+                element={<ProductPage />}
+              />
               <Route path="/cart" element={<Cart />} />
               <Route path="*" element={<Navigate to="/404" replace />} />
               <Route path="/404" element={<NotFound />} />
