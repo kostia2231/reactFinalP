@@ -26,6 +26,7 @@ export default function CategoryPage() {
   if (!thisCategories) {
     return <TypographyH4Muted>Category not found</TypographyH4Muted>;
   }
+
   return (
     <div className="m-8">
       <TypographyH1>{thisCategories?.title}</TypographyH1>
