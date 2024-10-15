@@ -9,6 +9,7 @@ const InputSearch = React.forwardRef(
     // };
     return (
       <input
+        // value={value}
         id={id}
         name={name}
         type={type}

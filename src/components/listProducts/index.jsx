@@ -1,20 +1,58 @@
+import { useMemo } from "react";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import ListProductsItem from "../listProductsItem";
 import { useProducts } from "@/data/data";
-// import PropTypes from "prop-types";
+import useStore from "@/store/store";
+import PropTypes from "prop-types";
 
 export default function ListProducts({
-  // принимаем пропсы и дефолты //
   limit,
   showAll,
-  priceRange = { from: 0, to: Infinity },
   showDiscountedOnly = false,
   sortOrder = "default",
 }) {
-  //хукаем дату и тд. //
   const { data: products, isLoading, isError, error } = useProducts();
+  const priceFrom = useStore((state) => state.filters.priceFrom);
+  const priceTo = useStore((state) => state.filters.priceTo);
 
-  // обрабатываем ошибочки и лоадинг //
+  const filteredAndSortedProducts = useMemo(() => {
+    if (!products) return [];
+
+    const filteredProducts = products.filter((product) => {
+      const price = product.discont_price
+        ? parseFloat(product.discont_price)
+        : parseFloat(product.price);
+
+      if (showDiscountedOnly && !product.discont_price) return false;
+      if (priceFrom && price < parseFloat(priceFrom)) return false;
+      if (priceTo && price > parseFloat(priceTo)) return false;
+      return true;
+    });
+
+    const sortedProducts = filteredProducts.sort((a, b) => {
+      const priceA = a.discont_price
+        ? parseFloat(a.discont_price)
+        : parseFloat(a.price);
+      const priceB = b.discont_price
+        ? parseFloat(b.discont_price)
+        : parseFloat(b.price);
+
+      switch (sortOrder) {
+        case "newest":
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        case "price:low-high":
+          return priceA - priceB;
+        case "price:high-low":
+          return priceB - priceA;
+        case "default":
+        default:
+          return 0;
+      }
+    });
+
+    return sortedProducts;
+  }, [priceFrom, priceTo, showDiscountedOnly, sortOrder, products]);
+
   if (isLoading) return <TypographyH4Muted>Loading...</TypographyH4Muted>;
   if (isError) {
     console.error("Error:", error.message);
@@ -23,67 +61,14 @@ export default function ListProducts({
   if (!products || products.length === 0) {
     return (
       <TypographyH4Muted>
-        It seems like there is no products available.
+        It seems like there are no products available.
       </TypographyH4Muted>
     );
   }
 
-  // Фильтруем //
-  let filteredProducts = products.filter((product) => {
-    const price = product.discont_price ? product.discont_price : product.price;
-
-    const isWithinRange =
-      (priceRange.from === undefined || price >= priceRange.from) &&
-      (priceRange.to === undefined || price <= priceRange.to);
-
-    return (
-      isWithinRange && (!showDiscountedOnly || product.discont_price !== null)
-    );
-  });
-
-  // Сортируем //
-  // (добавить условие цен) (блин снова забыл что цена и скидочная цена это разные вещи >.<)
-  // !дата кстати одинаковая поэтому сортировка не происходит
-
-  if (sortOrder) {
-    switch (sortOrder) {
-      case "newest":
-        filteredProducts.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        break;
-      case "price:low-high":
-        filteredProducts.sort((a, b) => {
-          const priceA = a.discont_price
-            ? parseFloat(a.discont_price)
-            : parseFloat(a.price);
-          const priceB = b.discont_price
-            ? parseFloat(b.discont_price)
-            : parseFloat(b.price);
-          return priceA - priceB;
-        });
-        break;
-      case "price:high-low":
-        filteredProducts.sort((a, b) => {
-          const priceA = a.discont_price
-            ? parseFloat(a.discont_price)
-            : parseFloat(a.price);
-          const priceB = b.discont_price
-            ? parseFloat(b.discont_price)
-            : parseFloat(b.price);
-          return priceB - priceA;
-        });
-        break;
-      case "default":
-      default:
-        break;
-    }
-  }
-
-  // Ограничиваем по количеству //
   const productsToShow = !showAll
-    ? filteredProducts.slice(0, limit)
-    : filteredProducts;
+    ? filteredAndSortedProducts.slice(0, limit)
+    : filteredAndSortedProducts;
 
   return (
     <div className="grid justify-between gap-8 my-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 max-w-[1550px] mx-auto">
@@ -93,19 +78,15 @@ export default function ListProducts({
     </div>
   );
 }
-//
-// ListProducts.propTypes = {
-//   limit: PropTypes.number,
-//   showAll: PropTypes.bool.isRequired,
-//   // priceRange: PropTypes.shape({
-//   //   from: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-//   //   to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-//   // }),
-//   showDiscountedOnly: PropTypes.bool,
-//   sortOrder: PropTypes.oneOf([
-//     "default",
-//     "newest",
-//     "price:low-high",
-//     "price:high-low",
-//   ]),
-// };
+
+ListProducts.propTypes = {
+  limit: PropTypes.number,
+  showAll: PropTypes.bool.isRequired,
+  showDiscountedOnly: PropTypes.bool,
+  sortOrder: PropTypes.oneOf([
+    "default",
+    "newest",
+    "price:low-high",
+    "price:high-low",
+  ]),
+};

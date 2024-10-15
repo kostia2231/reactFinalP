@@ -6,6 +6,8 @@ const useStore = create(
     filters: {
       discount: false,
       priceRange: { from: 0, to: Infinity },
+      priceFrom: 0,
+      priceTo: Infinity,
       sortOrder: null,
     },
     setFilters: (newFilters) =>
@@ -16,12 +18,12 @@ const useStore = create(
       set((state) => {
         const defaultFilters = {
           discount: false,
+          priceFrom: 0,
+          priceTo: Infinity,
           priceRange: { from: 0, to: Infinity },
           sortOrder: null,
         };
 
-        // тут важно проверить что если текущий фильтр соответствует дефолтному
-        // то просто возвращать стейт и не перерендывать компонент целиком
         if (JSON.stringify(state.filters) === JSON.stringify(defaultFilters)) {
           return state;
         }

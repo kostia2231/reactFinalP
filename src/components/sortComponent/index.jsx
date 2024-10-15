@@ -5,22 +5,36 @@ import { TypographyH4 } from "../ui/typo/typographyH4";
 import Combobox from "../ui/combobox";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+import useStore from "@/store/store";
+import { useCallback } from "react";
 
 const SortComponent = React.memo(function SortComponent({
-  onPriceChange,
   onDiscountToggle,
   onSortChange,
 }) {
   const { pathname } = useLocation();
-  // console.log(pathname);
 
-  const handlePriceFromChange = (e) => {
-    onPriceChange(e.target.value, undefined);
-  };
+  const setFilters = useStore((state) => state.setFilters);
 
-  const handlePriceToChange = (e) => {
-    onPriceChange(undefined, e.target.value);
-  };
+  const handlePriceFromChange = useCallback(
+    (e) => {
+      const value = Number(e.target.value);
+      if (!isNaN(value)) {
+        setFilters({ priceFrom: value });
+      }
+    },
+    [setFilters]
+  );
+
+  const handlePriceToChange = useCallback(
+    (e) => {
+      const value = Number(e.target.value);
+      if (!isNaN(value)) {
+        setFilters({ priceTo: value });
+      }
+    },
+    [setFilters]
+  );
 
   const handleSortChange = (sortValue) => {
     onSortChange(sortValue);
@@ -45,7 +59,6 @@ const SortComponent = React.memo(function SortComponent({
           onChange={handlePriceToChange}
         />
       </div>
-      {/* показываем чекбокс только если это не страница скидок */}
       {pathname !== "/all-sales" && (
         <div className="flex items-center space-x-4">
           <DiscountCheckbox onChange={onDiscountToggle} />
