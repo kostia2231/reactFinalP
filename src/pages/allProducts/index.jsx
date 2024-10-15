@@ -48,7 +48,9 @@ export default function AllProducts() {
 
   // сбрасываем фильтры если меняется линк //
   useEffect(() => {
-    resetFilters();
+    if (pathname !== "/all-products") {
+      resetFilters();
+    }
   }, [pathname, resetFilters]);
 
   // показываем только со скидкой на странице скидок //

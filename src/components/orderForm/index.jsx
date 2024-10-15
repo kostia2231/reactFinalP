@@ -73,6 +73,6 @@ export default function OrderForm({ cart, setShowPopup }) {
 }
 
 OrderForm.propTypes = {
-  cart: PropTypes.object.isRequired,
+  cart: PropTypes.array.isRequired,
   setShowPopup: PropTypes.func.isRequired,
 };

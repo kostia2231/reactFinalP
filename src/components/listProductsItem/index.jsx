@@ -4,10 +4,12 @@ import DiscountBadge from "../ui/discountBadge";
 import { Button } from "../ui/button";
 import useCartStore from "@/store/storeCart";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 export default function ListProductsItem({ item }) {
   const addItem = useCartStore((state) => state.addItem);
   const { pathname } = useLocation();
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -20,15 +22,17 @@ export default function ListProductsItem({ item }) {
         discont_price: item.discont_price,
         img: item.image,
       });
+      setIsAdded(true);
     }
   };
 
   const discount = Math.round(
     ((item.price - item.discont_price) / item.discont_price) * 100
   );
+
   return (
     <div className="border rounded-xl">
-      <Link to={`${pathname}/${item.title}`}>
+      <Link to={`${pathname !== "/" ? pathname : "all-sales"}/${item.title}`}>
         <div className="bg-secondary h-[350px] w-full rounded-xl relative group">
           {item.discont_price ? (
             <DiscountBadge discount={discount} moreStyle="absolute m-4" />
@@ -38,7 +42,7 @@ export default function ListProductsItem({ item }) {
               onClick={handleAddToCart}
               className="bottom-0 w-full mx-auto"
             >
-              Add to cart
+              {!isAdded ? "Add to cart" : "Add more"}
             </Button>
           </div>
         </div>

@@ -39,5 +39,5 @@ export default function PopUpComponent({ closePopup, isDiscount }) {
 
 PopUpComponent.propTypes = {
   closePopup: PropTypes.func.isRequired,
-  isDiscount: PropTypes.bool.isRequired,
+  isDiscount: PropTypes.bool,
 };

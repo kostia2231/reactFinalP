@@ -83,7 +83,7 @@ CartProduct.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     discont_price: PropTypes.number,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     quantity: PropTypes.number,
   }).isRequired,
 };

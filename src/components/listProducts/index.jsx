@@ -84,12 +84,12 @@ export default function ListProducts({
 }
 
 ListProducts.propTypes = {
-  limit: PropTypes.number.isRequired,
+  limit: PropTypes.number,
   showAll: PropTypes.bool.isRequired,
   priceRange: PropTypes.shape({
     from: PropTypes.number.isRequired,
     to: PropTypes.number.isRequired,
-  }).isRequired,
+  }),
   showDiscountedOnly: PropTypes.bool,
   sortOrder: PropTypes.oneOf([
     "default",
@@ -97,9 +97,4 @@ ListProducts.propTypes = {
     "price:low-high",
     "price:high-low",
   ]),
-};
-
-ListProducts.defaultProps = {
-  showDiscountedOnly: false,
-  sortOrder: "default",
 };
