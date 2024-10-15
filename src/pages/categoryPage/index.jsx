@@ -30,7 +30,7 @@ export default function CategoryPage() {
   return (
     <div className="m-8">
       <TypographyH1>{thisCategories?.title}</TypographyH1>
-      <div className="grid justify-between grid-cols-4 gap-8 my-10">
+      <div className="grid justify-between gap-8 my-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 max-w-[1550px] mx-auto">
         {productsInCategory?.map((item) => (
           <ListProductsItem key={item.id} item={item} />
         ))}

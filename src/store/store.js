@@ -9,6 +9,7 @@ const useStore = create(
       priceFrom: 0,
       priceTo: Infinity,
       sortOrder: "default",
+      isAdded: false,
     },
     setFilters: (newFilters) =>
       set((state) => ({

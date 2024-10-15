@@ -12,7 +12,7 @@ export default function CartProduct({ product }) {
   return (
     <div className="flex justify-between mb-4 border rounded-xl">
       <div className="flex ">
-        <div className="w-[200px] bg-secondary rounded-xl border-r"></div>
+        <div className="min-w-[200px] bg-secondary rounded-xl border-r"></div>
         <div className="flex flex-col gap-8 p-8 ">
           <div className="flex justify-between">
             <TypographyH4>{product.title}</TypographyH4>

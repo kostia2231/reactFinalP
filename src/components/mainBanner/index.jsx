@@ -11,7 +11,7 @@ export default function MainBanner() {
         <img
           src={MainCatDogImg}
           alt="Cat and Dog being cute"
-          className="w-full h-auto"
+          className="w-full h-[100hv]"
         />
         <div className="absolute inset-0 flex flex-col justify-start">
           <h1 className="pt-16 pl-8 font-bold leading-snug text-white text-8xl">

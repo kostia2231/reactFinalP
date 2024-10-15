@@ -4,12 +4,21 @@ import DiscountBadge from "../ui/discountBadge";
 import { Button } from "../ui/button";
 import useCartStore from "@/store/storeCart";
 import PropTypes from "prop-types";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function ListProductsItem({ item }) {
   const addItem = useCartStore((state) => state.addItem);
+
   const { pathname } = useLocation();
-  const [isAdded, setIsAdded] = useState(false);
+  // const [isAdded, setIsAdded] = useState(false);
+
+  // const navigate = useNavigate();
+  // const toCart = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   const path = `/cart`;
+  //   navigate(path);
+  // };
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -22,14 +31,14 @@ export default function ListProductsItem({ item }) {
         discont_price: item.discont_price,
         img: item.image,
       });
-      setIsAdded(true);
+      // setIsAdded(true);
     }
   };
 
   const discount = item.discont_price
     ? Math.round(((item.price - item.discont_price) / item.price) * 100)
     : 0;
-    
+
   return (
     <div className="border rounded-xl">
       <Link to={`${pathname === "/" ? "all-sales" : pathname}/${item.title}`}>
@@ -42,8 +51,15 @@ export default function ListProductsItem({ item }) {
               onClick={handleAddToCart}
               className="bottom-0 w-full mx-auto"
             >
-              {!isAdded ? "Add to cart" : "Add more"}
+              Add to cart
             </Button>
+            {/* 
+            //     <Button
+            //       onClick={toCart}
+            //       className="bottom-0 w-full mx-auto bg-white text-accent hover:bg-white active:bg-slate-50"
+            //     >
+            //       View in cart
+            //     </Button> */}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-4 p-8 mb-auto">
