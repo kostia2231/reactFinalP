@@ -1,10 +1,10 @@
-import { useCategories } from "@/data/data"; // Импортируем новый хук
+import { useCategories } from "@/data/data";
 import ListCategoriesItem from "../listCategoriesItem";
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import PropTypes from "prop-types";
 
 export default function ListCategories({ limit }) {
-  const { data: categories, isLoading, isError, error } = useCategories(); // Используем хук
+  const { data: categories, isLoading, isError, error } = useCategories();
 
   if (isLoading) return <TypographyH4Muted>Loading...</TypographyH4Muted>;
   if (isError || error) {

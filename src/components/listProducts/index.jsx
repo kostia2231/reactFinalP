@@ -5,15 +5,11 @@ import { useProducts } from "@/data/data";
 import useStore from "@/store/store";
 import PropTypes from "prop-types";
 
-export default function ListProducts({
-  limit,
-  showAll,
-  showDiscountedOnly = false,
-  sortOrder = "default",
-}) {
+export default function ListProducts({ limit, showAll, showDiscountedOnly }) {
   const { data: products, isLoading, isError, error } = useProducts();
   const priceFrom = useStore((state) => state.filters.priceFrom);
   const priceTo = useStore((state) => state.filters.priceTo);
+  const sortOrder = useStore((state) => state.filters.sortOrder);
 
   const filteredAndSortedProducts = useMemo(() => {
     if (!products) return [];

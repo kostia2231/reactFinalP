@@ -8,7 +8,8 @@ const useStore = create(
       priceRange: { from: 0, to: Infinity },
       priceFrom: 0,
       priceTo: Infinity,
-      sortOrder: null,
+      sortOrder: "default",
+      showDiscountedOnly: false,
     },
     setFilters: (newFilters) =>
       set((state) => ({
@@ -21,7 +22,8 @@ const useStore = create(
           priceFrom: 0,
           priceTo: Infinity,
           priceRange: { from: 0, to: Infinity },
-          sortOrder: null,
+          sortOrder: "default",
+          showDiscountedOnly: false,
         };
 
         if (JSON.stringify(state.filters) === JSON.stringify(defaultFilters)) {
