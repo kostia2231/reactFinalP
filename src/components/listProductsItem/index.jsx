@@ -26,10 +26,10 @@ export default function ListProductsItem({ item }) {
     }
   };
 
-  const discount = Math.round(
-    ((item.price - item.discont_price) / item.discont_price) * 100
-  );
-
+  const discount = item.discont_price
+    ? Math.round(((item.price - item.discont_price) / item.price) * 100)
+    : 0;
+    
   return (
     <div className="border rounded-xl">
       <Link to={`${pathname === "/" ? "all-sales" : pathname}/${item.title}`}>

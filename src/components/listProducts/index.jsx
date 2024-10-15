@@ -1,7 +1,7 @@
 import { TypographyH4Muted } from "../ui/typo/TypographyH4Muted";
 import ListProductsItem from "../listProductsItem";
 import { useProducts } from "@/data/data";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 export default function ListProducts({
   // принимаем пропсы и дефолты //
@@ -29,19 +29,22 @@ export default function ListProducts({
   }
 
   // Фильтруем //
-  let filteredProducts = products
-    .filter(
-      (product) =>
-        (product.discont_price ? product.discont_price : product.price) >=
-          priceRange.from &&
-        (product.discont_price ? product.discont_price : product.price) <=
-          priceRange.to
-    )
-    .filter((product) => !showDiscountedOnly || product.discont_price !== null);
+  let filteredProducts = products.filter((product) => {
+    const price = product.discont_price ? product.discont_price : product.price;
+
+    const isWithinRange =
+      (priceRange.from === undefined || price >= priceRange.from) &&
+      (priceRange.to === undefined || price <= priceRange.to);
+
+    return (
+      isWithinRange && (!showDiscountedOnly || product.discont_price !== null)
+    );
+  });
 
   // Сортируем //
   // (добавить условие цен) (блин снова забыл что цена и скидочная цена это разные вещи >.<)
   // !дата кстати одинаковая поэтому сортировка не происходит
+
   if (sortOrder) {
     switch (sortOrder) {
       case "newest":
@@ -50,18 +53,26 @@ export default function ListProducts({
         );
         break;
       case "price:low-high":
-        filteredProducts.sort(
-          (a, b) =>
-            (a.discont_price ? a.discont_price : a.price) -
-            (b.discont_price ? b.discont_price : b.price)
-        );
+        filteredProducts.sort((a, b) => {
+          const priceA = a.discont_price
+            ? parseFloat(a.discont_price)
+            : parseFloat(a.price);
+          const priceB = b.discont_price
+            ? parseFloat(b.discont_price)
+            : parseFloat(b.price);
+          return priceA - priceB;
+        });
         break;
       case "price:high-low":
-        filteredProducts.sort(
-          (a, b) =>
-            (b.discont_price ? b.discont_price : b.price) -
-            (a.discont_price ? a.discont_price : a.price)
-        );
+        filteredProducts.sort((a, b) => {
+          const priceA = a.discont_price
+            ? parseFloat(a.discont_price)
+            : parseFloat(a.price);
+          const priceB = b.discont_price
+            ? parseFloat(b.discont_price)
+            : parseFloat(b.price);
+          return priceB - priceA;
+        });
         break;
       case "default":
       default:
@@ -82,19 +93,19 @@ export default function ListProducts({
     </div>
   );
 }
-
-ListProducts.propTypes = {
-  limit: PropTypes.number,
-  showAll: PropTypes.bool.isRequired,
-  priceRange: PropTypes.shape({
-    from: PropTypes.number.isRequired,
-    to: PropTypes.number.isRequired,
-  }),
-  showDiscountedOnly: PropTypes.bool,
-  sortOrder: PropTypes.oneOf([
-    "default",
-    "newest",
-    "price:low-high",
-    "price:high-low",
-  ]),
-};
+//
+// ListProducts.propTypes = {
+//   limit: PropTypes.number,
+//   showAll: PropTypes.bool.isRequired,
+//   // priceRange: PropTypes.shape({
+//   //   from: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//   //   to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//   // }),
+//   showDiscountedOnly: PropTypes.bool,
+//   sortOrder: PropTypes.oneOf([
+//     "default",
+//     "newest",
+//     "price:low-high",
+//     "price:high-low",
+//   ]),
+// };
