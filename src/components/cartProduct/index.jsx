@@ -1,24 +1,14 @@
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import { TypographyH2 } from "../ui/typo/typographyH2";
 import { Button } from "../ui/button";
+import { X } from "lucide-react";
 import useCartStore from "@/store/storeCart";
-import { X, Plus, Minus } from "lucide-react";
 import PropTypes from "prop-types";
+import CartSelector from "@/components/cartSelector";
 
 export default function CartProduct({ product }) {
-  const { addItem, removeItem, clearOneTypeOfItem } = useCartStore();
+  const clearOneTypeOfItem = useCartStore((state) => state.clearOneTypeOfItem);
 
-  const handleAddToCart = () => {
-    if (product) {
-      addItem({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        discont_price: product.discont_price,
-        img: product.image,
-      });
-    }
-  };
   return (
     <div className="flex justify-between mb-4 border rounded-xl">
       <div className="flex ">
@@ -28,29 +18,8 @@ export default function CartProduct({ product }) {
             <TypographyH4>{product.title}</TypographyH4>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-8 border rounded-md h-fit">
-              <Button
-                onClick={() => removeItem(product.id)}
-                variant="ghost"
-                size="icon"
-                className="m-0 border-r"
-              >
-                <p className="text-5xl font-thin">
-                  <Minus />
-                </p>
-              </Button>
-              <TypographyH4>{product.quantity}</TypographyH4>
-              <Button
-                onClick={handleAddToCart}
-                variant="ghost"
-                size="icon"
-                className="m-0 border-l"
-              >
-                <p className="text-4xl font-thin">
-                  <Plus />
-                </p>
-              </Button>
-            </div>
+            <CartSelector blockButton={true} product={product} />
+
             <div className="mt-auto">
               <TypographyH2>
                 ${product.discont_price ? product.discont_price : product.price}

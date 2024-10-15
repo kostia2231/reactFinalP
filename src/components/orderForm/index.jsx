@@ -6,8 +6,10 @@ import useSendUpdateData from "@/data/mutateData";
 import useCartStore from "@/store/storeCart";
 import PropTypes from "prop-types";
 
-export default function OrderForm({ cart, setShowPopup }) {
+export default function OrderForm({ setShowPopup }) {
   const clearCart = useCartStore((state) => state.clearCart);
+  const cart = useCartStore((state) => state.cart);
+
   const { sendOrder } = useSendUpdateData();
   const data = cart.map(({ id, quantity }) => ({ id, quantity }));
 
@@ -74,6 +76,5 @@ export default function OrderForm({ cart, setShowPopup }) {
 }
 
 OrderForm.propTypes = {
-  cart: PropTypes.array.isRequired,
   setShowPopup: PropTypes.func.isRequired,
 };

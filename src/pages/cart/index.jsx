@@ -1,20 +1,22 @@
+import { useState, useEffect } from "react";
 import { TypographyH1 } from "@/components/ui/typo/typographyH1";
-import { TypographyH2 } from "@/components/ui/typo/typographyH2";
+import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import useCartStore from "@/store/storeCart";
 import CartProduct from "@/components/cartProduct";
-import { TypographyH4Muted } from "@/components/ui/typo/TypographyH4Muted";
 import OrderForm from "@/components/orderForm";
 import PopUpComponent from "@/components/popUpComponent";
-import { useState, useEffect } from "react";
+import CartOrderDetails from "@/components/cartOrderDetails";
 
 export default function Cart() {
-  const { cart, getCartCount, getTotalPrice } = useCartStore();
+  const cart = useCartStore((state) => state.cart);
+
   const [showPopup, setShowPopup] = useState(false);
   const closePopup = () => {
     setShowPopup(false);
   };
+
   useEffect(() => {
     if (showPopup) {
       const handleClose = () => {
@@ -26,7 +28,7 @@ export default function Cart() {
       };
     }
   }, [showPopup]);
-  //
+
   return (
     <div className="grid gap-8 m-8">
       {showPopup && <PopUpComponent closePopup={closePopup} />}
@@ -49,24 +51,11 @@ export default function Cart() {
               <CartProduct key={product.id} product={product} />
             ))}
           </div>
-
           <div className=" rounded-xl bg-secondary h-fit">
             <div className="flex flex-col justify-between p-8">
-              <div className="flex flex-col gap-4">
-                <TypographyH2 moreStyle="font-[700]">
-                  Order details
-                </TypographyH2>
-                <TypographyH2 moreStyle="text-muted font-[500]">
-                  {getCartCount()} items
-                </TypographyH2>
-                <div className="flex justify-between">
-                  <TypographyH2 moreStyle="text-muted font-[500] mt-auto">
-                    Total:
-                  </TypographyH2>
-                  <TypographyH1>${getTotalPrice()},00</TypographyH1>
-                </div>
-              </div>
-              <OrderForm cart={cart} setShowPopup={setShowPopup} />
+              <CartOrderDetails />
+
+              <OrderForm setShowPopup={setShowPopup} />
             </div>
           </div>
         </div>

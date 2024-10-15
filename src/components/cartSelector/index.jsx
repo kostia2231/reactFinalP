@@ -4,13 +4,13 @@ import { TypographyH4 } from "@/components/ui/typo/TypographyH4";
 import useCartStore from "@/store/storeCart";
 import PropTypes from "prop-types";
 
-export default function CartSelector({ product }) {
+export default function CartSelector({ product, blockButton }) {
   const addItem = useCartStore((state) => state.addItem);
   const removeItem = useCartStore((state) => state.removeItem);
   const cart = useCartStore((state) => state.cart);
 
-  const item = cart.find((p) => p.id === product?.id);
-  const itemQuantity = item ? item.quantity : 0;
+  const itemInCart = cart.find((item) => item.id === product.id);
+  const itemQuantity = itemInCart ? itemInCart.quantity : 0;
 
   const handleAddToCart = () => {
     if (product) {
@@ -48,13 +48,16 @@ export default function CartSelector({ product }) {
           </p>
         </Button>
       </div>
-      <Button onClick={handleAddToCart} className="w-screen m-0 h-14">
-        Add to cart
-      </Button>
+      {!blockButton && (
+        <Button onClick={handleAddToCart} className="w-screen m-0 h-14">
+          Add to cart
+        </Button>
+      )}
     </>
   );
 }
 
 CartSelector.propTypes = {
   product: PropTypes.object,
+  blockButton: PropTypes.bool,
 };
