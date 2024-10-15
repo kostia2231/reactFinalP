@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { TypographyH4 } from "../ui/typo/typographyH4";
 import DiscountBadge from "../ui/discountBadge";
 import { Button } from "../ui/button";
@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 export default function ListProductsItem({ item }) {
   const addItem = useCartStore((state) => state.addItem);
+  const { pathname } = useLocation();
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -27,7 +28,7 @@ export default function ListProductsItem({ item }) {
   );
   return (
     <div className="border rounded-xl">
-      <Link to={`/all-products/${item.title}`}>
+      <Link to={`${pathname}/${item.title}`}>
         <div className="bg-secondary h-[350px] w-full rounded-xl relative group">
           {item.discont_price ? (
             <DiscountBadge discount={discount} moreStyle="absolute m-4" />

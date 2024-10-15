@@ -9,7 +9,7 @@ export default function Breadcrumbs() {
     .split("/")
     .filter((crumb) => crumb !== "")
     .map((crumb, index, array) => {
-      currentLink = `/${crumb}`;
+      currentLink += `/${crumb}`;
 
       const formattedCrumb = decodeURIComponent(crumb)
         .replace(/-/g, " ")
