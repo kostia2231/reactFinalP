@@ -31,11 +31,15 @@ const SortComponent = React.memo(function SortComponent({
       <div className="flex items-center gap-4">
         <TypographyH4>Price</TypographyH4>
         <InputSearch
+          id="from"
+          name="from"
           type="number"
           placeholder="from"
           onChange={handlePriceFromChange}
         />
         <InputSearch
+          id="to"
+          name="to"
           type="number"
           placeholder="to"
           onChange={handlePriceToChange}

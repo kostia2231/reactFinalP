@@ -41,6 +41,7 @@ export default function FormComponent({ setShowPopup }) {
                 : field.charAt(0).toUpperCase() + field.slice(1)
             }
             name={field}
+            autoComplete={field}
             type={
               field === "phone" ? "tel" : field === "email" ? "email" : "text"
             }
